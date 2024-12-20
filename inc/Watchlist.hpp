@@ -1,16 +1,17 @@
 #pragma once
-#include "Movie.hpp"
-#include "TVShow.hpp"
-
 #include <vector>
+#include "Content.hpp"
 
 class Watchlist
 {
-    std::vector<Movie> movies;
-    std::vector<TVShow> TVShows;
+    std::vector<std::shared_ptr<Content>> contents;
+    std::string name;
+    int id;
+    static int cnt;
 public:
-    Watchlist(std::vector<Movie>, std::vector<TVShow>);
-    void setMovies();
-    void setTV_Shows();
+    Watchlist();
+    // void setMovies();
+    // void setTV_Shows();
+    //void setName();
     ~Watchlist() = default;
 };

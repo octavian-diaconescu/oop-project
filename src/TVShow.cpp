@@ -5,10 +5,11 @@ TVShow::TVShow(string Title, float R, string ageR, std::vector<Episode>& ep) : C
 
 TVShow::TVShow(const TVShow& other) : Content(other), episodes(other.episodes){};
 
-ifstream& operator>>(ifstream& fin, TVShow& obj){}
+ifstream& operator>>(ifstream& fin, TVShow& obj){return fin;}
 ostream& operator<<(ostream& out, const TVShow& obj)
 {
     //out<<
+    return out;
 }
 TVShow::~TVShow()
 {

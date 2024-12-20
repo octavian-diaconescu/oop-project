@@ -1,26 +1,24 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "Watchlist.hpp"
 
 class User{
-  int id;
   std::string fullName;// Last_name First_name
   std::string birthDate;//yyyy.mm.dd
-  std::string preferedLanguage;//En, Fr, Ro, etc
-  static int cnt;
-public:
-  User();
-  explicit User(std::string, std::string, std::string);
-  User(const User&);
-  User& operator=(const User&);
-  friend std::ifstream& operator>>(std::ifstream&, User&);
-  friend std::ostream& operator<<(std::ostream&, const User&);
-  std::string getFullName() const;
-  std::string getBirthDate() const;
-  std::string getPreferedLanguage() const;
-  void setFullName(const std::string);
-  void setBirthDate(const std::string);
-  void setPreferedLanguage(const std::string);
-  static void readFile(std::ifstream&, std::vector<User>&);
+  std::string preferedLanguage;//EN, FR, RO, etc
+  std::string username;
+  std::vector<Watchlist> watchlist;
 
+  static User uniqueInstance;
+  int data{};
+  explicit User(const int d = 0) : data(d){}
+  User& operator=(const User&);
+  User(const User&);
+public:
+  static User& instance();
+  friend std::istream& operator>>(std::istream&, User&);
+  friend std::ostream& operator<<(std::ostream&, const User&);
+  static void registerUser(User&);
   ~User();
 };

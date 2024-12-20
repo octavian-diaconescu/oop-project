@@ -17,6 +17,7 @@ add_executable(Proiect
         src/User.cpp
         src/Movie.cpp
         inc/Menu.hpp
+        src/Menu.cpp
         src/TVShow.cpp
         src/Content.cpp
         src/Episode.cpp

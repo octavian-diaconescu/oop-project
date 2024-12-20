@@ -7,14 +7,14 @@
 
 class Movie : public Content{
     std::string runtime; //hh:mm
-    std::vector<Actor*> actors;
+    std::vector<Actor> actors;
 public:
     Movie();
     Movie(std::string, std::string, float, std::string);
     Movie(const Movie&);
     Movie& operator=(const Movie&);
     std::string getTitle() const override;
-    void addActor(Actor*);
+    void addActor(Actor);
     ~Movie() override;
     friend std::ifstream& operator>>(std::ifstream&, Movie&);
     friend std::ostream& operator<<(std::ostream&, const Movie&);

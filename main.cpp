@@ -3,6 +3,7 @@
 #include <Actor.hpp>
 //#include <Category.hpp>
 #include <Movie.hpp>
+#include "Menu.hpp"
 #include <User.hpp>
 //#include <Watchlist.hpp>
 //#include <TVShow.hpp>
@@ -10,7 +11,6 @@ using namespace std;
 
 void populate()
 {
-    ifstream fin("users.in");
     ifstream mfin("movies.in");
     ifstream afin("actors.in");
     //fread actors
@@ -23,18 +23,13 @@ void populate()
     Movie::readFile(mfin, movies);
     for (auto & movie : movies)
         cout << movie << endl;
-    //fread users
-    vector<User> users;
-    User::readFile(fin, users);
-    for (auto & user1 : users)
-        cout << user1 << endl;
-    fin.close();
     mfin.close();
     afin.close();
 }
-//main
+
 int main()
 {
-    populate();
+    Menu::run();
+
     return 0;
 }

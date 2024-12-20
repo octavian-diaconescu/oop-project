@@ -7,6 +7,7 @@ protected:
     std::string title;
     float rating;//out of 10
     std::string ageRating;//rated R, PG, etc.;
+    std::string progress;
 public:
     Content();
     Content(std::string, float, std::string);

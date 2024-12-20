@@ -2,6 +2,11 @@
 #include <iostream>
 #include <vector>
 
-Watchlist::Watchlist(std::vector<Movie> Movies, std::vector<TVShow> TvShows) : movies(Movies), TVShows(TvShows) {};
+Watchlist::Watchlist() : id(++cnt), name("watchlist") {};
+
+//Watchlist::~Watchlist() {
+//  contents.clear();
+//  name.clear();
+//}
 
 

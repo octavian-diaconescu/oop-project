@@ -5,11 +5,11 @@
 #include <vector>
 using namespace std;
 
-Movie::Movie() : runtime(" "), actors(__null)
+Movie::Movie() : runtime(" ")
 {
 };
 
-Movie::Movie(string rt, string Title, float R, string ageR) : Content(Title, R, ageR), runtime(rt), actors(__null)
+Movie::Movie(string rt, string Title, float R, string ageR) : Content(Title, R, ageR), runtime(rt)
 {
 };
 
@@ -42,10 +42,10 @@ ostream& operator<<(ostream& out, const Movie& movie)
     return out;
 }
 
-void Movie::addActor(Actor* actor)
-{
-    actors.push_back(actor);
-}
+// void Movie::addActor(Actor* actor)
+// {
+//     actors.push_back(actor);
+// }
 
 Movie::~Movie()
 {
