@@ -2,32 +2,21 @@
 
 #include <string>
 #include <vector>
-#include "Category.hpp"
 #include "Content.hpp"
+#include "Actor.hpp"
 
-class Movie : public Content {
+class Movie : public Content{
     std::string runtime; //hh:mm
-    //std::vector<Actor> actors;
-    Category category; //action, adventure, etc.
-
+    std::vector<Actor> actors;
 public:
     Movie();
-
-    explicit Movie(const std::string &, const std::string &, float, const std::string &);
-
-    Movie(const Movie &) = default;
-
-    Movie &operator=(const Movie &) = default;
-
-    [[nodiscard]] std::string getTitle() const override;
-
-    ~Movie() override = default;
-
-    friend std::istream &operator>>(std::istream &, Movie &);
-
-    friend std::ostream &operator<<(std::ostream &, const Movie &);
-
-    static void readFile(std::istream &, std::vector<Movie> &);
-
-    void printInfo() const override;
+    Movie(std::string, std::string, float, std::string);
+    Movie(const Movie&);
+    Movie& operator=(const Movie&);
+    std::string getTitle() const override;
+    void addActor(Actor);
+    ~Movie() override;
+    friend std::ifstream& operator>>(std::ifstream&, Movie&);
+    friend std::ostream& operator<<(std::ostream&, const Movie&);
+    static void readFile(std::ifstream&, std::vector<Movie>&);
 };
