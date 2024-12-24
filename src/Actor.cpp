@@ -28,18 +28,19 @@ std::ostream& operator<<(std::ostream& out, const Actor& act)
   return out;
 }
 
-std::string Actor::getName(){
-  return name;
-}
-std::string Actor::getNationality(){
-  return nationality;
-}
-std::string Actor::getBirthDate(){
-  return birthDate;
-}
-std::string Actor::getBirthCity(){
-  return birthCity;
-}
+// std::string Actor::getName(){
+//   return name;
+// }
+// std::string Actor::getNationality(){
+//   return nationality;
+// }
+// std::string Actor::getBirthDate(){
+//   return birthDate;
+// }
+// std::string Actor::getBirthCity(){
+//   return birthCity;
+// }
+
 Actor::Actor(const Actor& other){
      this->name = other.name;
      this->nationality = other.nationality;

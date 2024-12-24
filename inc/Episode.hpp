@@ -1,15 +1,29 @@
 #pragma once
 #include <string>
-class Episode
-{
+#include "Content.hpp"
+
+class Episode : public Content {
+    std::string epS; //S01Ep01
     std::string runtime;
-    std::string name;
-    float rating; //out of 10
+
 public:
-    Episode(std::string, std::string, float);
-    Episode(const Episode &);
-    Episode &operator=(const Episode &);
-    friend std::ifstream& operator>>(std::ifstream&, const Episode &);
-    friend std::ostream& operator<<(std::ostream&, const Episode &);
-    ~Episode();
+    Episode();
+
+    explicit Episode(const std::string &, const std::string &, const std::string &, const std::string &, float);
+
+    Episode(const Episode &) = default;
+
+    Episode &operator=(const Episode &) = default;
+
+    Episode &operator+(const Episode &);
+
+    void printInfo() const override;
+
+    [[nodiscard]] std::string getTitle() const override;
+
+    friend std::istream &operator>>(std::istream &, Episode &);
+
+    friend std::ostream &operator<<(std::ostream &, const Episode &);
+
+    ~Episode() override = default;
 };

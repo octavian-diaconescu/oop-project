@@ -1,22 +1,32 @@
 #include <Episode.hpp>
 #include <iostream>
+using namespace std;
+Episode::Episode() : Content(){}
 
-Episode::Episode(std::string rt, std::string Name, float R) : runtime(rt), name(Name), rating(R) {};
-Episode::Episode(const Episode& other): runtime(other.runtime), name(other.name), rating(other.rating) {};
-Episode& Episode::operator=(const Episode& other)
-{
-    if (this != &other)
-    {
-        runtime = other.runtime;
-        name = other.name;
-        rating = other.rating;
-    }
+Episode::Episode(const std::string& name, const string& rating, const std::string& eps, const string& rt,  const float R) : Content(name, R, " "), epS(eps), runtime(rt) {}
+
+Episode & Episode::operator+(const Episode & other) {
+    epS = other.epS;
+    title = other.title;
+    rating = other.rating;
+    runtime = other.runtime;
     return *this;
 }
 
-std::ifstream& operator>>(std::ifstream& fin, Episode& episode)
-{};
-std::ostream& operator<<(std::ostream& os, const Episode& episode){}
+void Episode::printInfo() const {
+    cout << epS <<  " " << title << " " << rating << " " << runtime << endl;
+}
 
-Episode::~Episode(){runtime.clear(), name.clear(), rating = 0.0;}
+string Episode::getTitle() const {
+    return title;
+}
 
+std::istream & operator>>(std::istream &in, Episode &ep) {
+    in >> ep.epS >> ep.title >> ep.rating >> ep.runtime;
+    return in;
+}
+
+std::ostream & operator<<(std::ostream &out, const Episode & other) {
+    out << other.epS << " " << other.title << " " << other.rating << " " << other.runtime << endl;
+    return out;
+}
