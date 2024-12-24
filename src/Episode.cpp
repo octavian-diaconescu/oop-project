@@ -1,9 +1,10 @@
 #include <Episode.hpp>
 #include <iostream>
+#include <utility>
 using namespace std;
 Episode::Episode() : Content(){}
 
-Episode::Episode(const std::string& name, const string& rating, const std::string& eps, const string& rt,  const float R) : Content(name, R, " "), epS(eps), runtime(rt) {}
+Episode::Episode(const std::string &name, std::string  eps, string  rt,  const float R) : Content(name, R, " "), epS(std::move(eps)), runtime(std::move(rt)) {}
 
 Episode & Episode::operator+(const Episode & other) {
     epS = other.epS;

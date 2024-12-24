@@ -6,9 +6,9 @@ Category::Category() : name("empty") {}
 
 Category::Category(const std::string& Name): name(Name){}
 
-std::string Category::Name() const {
-  return name;
-}
+// std::string Category::Name() const {
+//   return name;
+// }
 
 Category& Category::operator=(const Category& other){
   if(this != &other){

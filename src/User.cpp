@@ -37,19 +37,19 @@ void User::printWatchlistContents() const {
     watchlist[id].printContents();
 }
 
-void User::registerUser(User &other) {
-    ofstream usersOutFile("user.out");
-    cout << "Please enter your full name: ";
-    getline(cin, other.fullName);
-    cout << "Please enter your birth date:(yyyy.mm.dd) ";
-    cin >> other.birthDate;
-    cout << "Please enter your preferred language:(EN, FR, RO, etc.) ";
-    cin >> other.preferredLanguage;
-    cout << "Please choose a username:(must not include spaces) ";
-    cin >> other.username;
-    usersOutFile << other.fullName << " " << other.birthDate << " " << other.preferredLanguage << " " << other.username;
-    usersOutFile.close();
-}
+// void User::registerUser(User &other) {
+//     ofstream usersOutFile("user.out");
+//     cout << "Please enter your full name: ";
+//     getline(cin, other.fullName);
+//     cout << "Please enter your birth date:(yyyy.mm.dd) ";
+//     cin >> other.birthDate;
+//     cout << "Please enter your preferred language:(EN, FR, RO, etc.) ";
+//     cin >> other.preferredLanguage;
+//     cout << "Please choose a username:(must not include spaces) ";
+//     cin >> other.username;
+//     usersOutFile << other.fullName << " " << other.birthDate << " " << other.preferredLanguage << " " << other.username;
+//     usersOutFile.close();
+// }
 
 void User::createWatchlist() {
     cout << "Do you want to name your watchlist? (y/n): ";
@@ -107,7 +107,7 @@ void User::addMovie(vector<Movie> &mvs) {
         cin.ignore();
         cin >> id;
     }
-    if (id < 0 || id > watchlist.size()) {
+    if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
         cout << "Please enter a valid ID!\nID: ";
         cin >> id;
     }
@@ -158,7 +158,7 @@ void User::addTVShow(vector<TVShow> &tvs) {
         cin >> id;
         cout.flush();
 
-        if (id < 0 || id > watchlist.size()) {
+        if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
             cout << "Please enter a valid ID!\nID: ";
             cin >> id;
         }
@@ -208,7 +208,7 @@ void User::markAsWatched() const {
         cin.ignore();
         cin >> id;
     }
-    if (id < 0 || id > watchlist.size()) {
+    if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
         cout << "Please enter a valid ID!\nID: ";
         cin >> id;
     }
@@ -245,7 +245,7 @@ void User::deleteWatchlist() {
     cout << "Enter ID: ";
     int id;
     cin >> id;
-    if (id < 0 || id > watchlist.size()) {
+   if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
         cout << "Please enter a valid ID!\nID: ";
         cin >> id;
     }
@@ -278,7 +278,7 @@ void User::deleteWatchlist() {
 //         cin >> id;
 //     }
 //     cout << endl;
-//     cout << "What would you like to remove?(enter it's name): ";
+//     cout << "What would you like to remove?(enter its name): ";
 //     string name;
 //     cin >> name;
 //     int ok = 0;
@@ -303,10 +303,10 @@ void User::deleteWatchlist() {
 //     }
 // }
 
-void User::printWatchlist() const {
-    for (const auto &i: watchlist)
-        i.printContents();
-}
+// void User::printWatchlist() const {
+//     for (const auto &i: watchlist)
+//         i.printContents();
+// }
 
 int User::checkWatchlist() const {
     if (watchlist.empty()) {

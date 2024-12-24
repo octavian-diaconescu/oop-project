@@ -31,8 +31,6 @@ void Menu::run() {
     populateDB(movies, tvShow);
     User &user = User::instance();
     string title;
-    char ch;
-    //User::registerUser(user);
     while (true) {
         int choice;
         bool chk = false;

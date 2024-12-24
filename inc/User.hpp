@@ -31,7 +31,7 @@ public:
 
   void printWatchlistContents() const;
 
-  static void registerUser(User &);
+  //static void registerUser(User &);
 
   void createWatchlist();
 
@@ -45,7 +45,7 @@ public:
 
   void deleteWatchlist();
 
-  void printWatchlist() const;
+ // void printWatchlist() const;
 
   [[nodiscard]] int checkWatchlist() const;
 

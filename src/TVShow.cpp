@@ -25,9 +25,9 @@ void TVShow::printInfo() const {
     cout << endl;
 }
 
-vector<Episode> *TVShow::getEpisodes() {
-    return &episodes;
-}
+// vector<Episode> *TVShow::getEpisodes() {
+//     return &episodes;
+// }
 
 std::string TVShow::getTitle() const {
     return title;

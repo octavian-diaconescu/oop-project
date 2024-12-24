@@ -36,7 +36,7 @@ void Watchlist::printContents() const {
       movie->printInfo();
     }
   cout << "TV Shows in watchlist: " << endl;
-  for (auto content: contents)
+  for (const auto& content: contents)
     if (dynamic_cast<TVShow *>(content.get())) {
       const auto *tvs = dynamic_cast<TVShow *>(content.get());
       tvs->printInfo();
@@ -60,4 +60,5 @@ string Watchlist::getName() const {
 
 std::ostream &operator<<(std::ostream &os, const Watchlist &watchlist) {
   os << watchlist.id << " " << watchlist.name << endl;
+  return  os;
 }

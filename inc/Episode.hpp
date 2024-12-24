@@ -9,7 +9,7 @@ class Episode : public Content {
 public:
     Episode();
 
-    explicit Episode(const std::string &, const std::string &, const std::string &, const std::string &, float);
+    explicit Episode(const std::string &, std::string ,std::string, float);
 
     Episode(const Episode &) = default;
 
