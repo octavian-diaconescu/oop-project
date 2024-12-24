@@ -1,18 +1,32 @@
 #include "Category.hpp"
 #include <iostream>
 #include <string>
+using namespace std;
+Category::Category() : name("empty") {}
 
-Category::Category(std::string Name): name(Name){};
+Category::Category(const std::string& Name): name(Name){}
+
+std::string Category::Name() const {
+  return name;
+}
+
 Category& Category::operator=(const Category& other){
   if(this != &other){
     this->name = other.name;
   }
-};
+  return *this;
+}
 
 Category::Category(const Category& other){
   name = other.name;
 }
 
-Category::~Category(){
-  name.clear();
+istream& operator>>(istream& in, Category& cat) {
+  in >> cat.name;
+  return in;
+}
+
+ostream& operator<<(ostream& out, const Category& cat) {
+  out << cat.name;
+  return out;
 }

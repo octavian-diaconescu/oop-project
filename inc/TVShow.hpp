@@ -1,15 +1,34 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Category.hpp"
 #include "Content.hpp"
 #include "Episode.hpp"
 
-class TVShow : public Content{
+class TVShow : public Content {
     std::vector<Episode> episodes;
 public:
-    TVShow(std::string, float, std::string, std::vector<Episode>&);
-    TVShow(const TVShow&);
-    friend std::ifstream& operator>>(std::ifstream&, const TVShow&);
-    friend std::ostream& operator<<(std::ostream&, const TVShow&);
-    ~TVShow();
+    TVShow() = default;
+
+    TVShow(const TVShow &) = default;
+
+    TVShow &operator=(const TVShow &) = default;
+
+    friend std::istream &operator>>(std::istream &, TVShow &);
+
+    friend std::ostream &operator<<(std::ostream &, const TVShow &);
+
+    void printInfo() const override;
+
+    std::vector<Episode> *getEpisodes();
+
+    [[nodiscard]] std::string getTitle() const override;
+
+    static void populateEpisodes(std::vector<TVShow> &tvshows);
+
+    void printEpisodes() const ;
+
+    ~TVShow() override = default;
+
+    static void readFile(std::istream &sfin, std::vector<TVShow> &vector);
 };

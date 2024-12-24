@@ -1,13 +1,26 @@
 #pragma once
-class Menu
-{
+#include <TVShow.hpp>
+#include "Actor.hpp"
+#include "Movie.hpp"
+
+class Menu {
     int data;
-    explicit Menu(const int d = 0) : data(d) {}
+
+    explicit Menu(const int d = 0) : data(d) {
+    }
+
     static Menu uniqueInstance;
-    Menu(const Menu&) = default;
-    Menu& operator=(const Menu&) = default;
+
+    Menu(const Menu &) = default;
+
+    Menu &operator=(const Menu &) = default;
+
 public:
-    static Menu& instance();
+    static Menu &instance();
+
     ~Menu() = default;
+
     static void run();
+
+    static void populateDB(std::vector<Movie> &, std::vector<TVShow> &);
 };
