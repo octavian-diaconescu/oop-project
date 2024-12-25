@@ -62,39 +62,37 @@ void User::createWatchlist() {
     char answer;
     string name;
     Watchlist obj1;
-    while (i < 1) {
-        cin >> answer;
-        cin.ignore();
-        switch (answer) {
-            case 'y':
-                cout << "Please enter your watchlist name: ";
-                getline(cin, name);
-                obj1.setName(name);
-                watchlist.push_back(obj1);
-                ++i;
-                break;
-            case 'Y':
-                cout << "Please enter your watchlist name: ";
-                getline(cin, name);
-                obj1.setName(name);
-                watchlist.push_back(obj1);
-                i++;
-                break;
-            case 'n':
-                ++i;
-                watchlist.push_back(obj1);
-                break;
-            case 'N':
-                i++;
-                watchlist.push_back(obj1);
-                break;
-            default:
-                cout << "Please enter a valid option!" << endl;
-                cout << ": ";
-                break;
-        }
+    cin >> answer;
+    cin.ignore();
+    switch (answer) {
+        case 'y':
+            cout << "Please enter your watchlist name: ";
+            getline(cin, name);
+            obj1.setName(name);
+            watchlist.push_back(obj1);
+            ++i;
+            break;
+        case 'Y':
+            cout << "Please enter your watchlist name: ";
+            getline(cin, name);
+            obj1.setName(name);
+            watchlist.push_back(obj1);
+            i++;
+            break;
+        case 'n':
+            ++i;
+            watchlist.push_back(obj1);
+            break;
+        case 'N':
+            i++;
+            watchlist.push_back(obj1);
+            break;
+        default:
+            cout << "Please enter a valid option!" << endl;
+            break;
     }
 }
+
 
 void User::addMovie(vector<Movie> &mvs) {
     cout << "Available watchlists: " << endl;
@@ -275,7 +273,7 @@ void User::listSorted() const {
             movie->printInfo();
         }
     cout << "TV Shows in watchlist: " << endl;
-    for (const auto& content: contents)
+    for (const auto &content: contents)
         if (const auto *tvs = dynamic_cast<TVShow *>(content.get())) {
             tvs->printInfo();
         }
