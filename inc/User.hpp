@@ -13,7 +13,7 @@ class User {
   std::string username;
   std::vector<Watchlist> watchlist;
   static User uniqueInstance;
-  int data;
+  [[maybe_unused]] int data;
 
   explicit User(int d = 0);
 
