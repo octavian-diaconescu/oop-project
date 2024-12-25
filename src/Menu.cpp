@@ -33,15 +33,15 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
     //     cout << tvshow << endl;
     size_t j = 0;
     for (auto &i: tv_shows) {
+        if (j >= names.size()) break;
         if (i.getTitle() == names[j]) {
             ifstream in("../input_files/" + names[j] + ".txt");
             if (!in.is_open()) {
                 cerr << "Error opening file " << names[j] + ".txt" << endl;
+                continue;
             }
             i.populateEpisodes(in);
-            if (j < names.size())
-                ++j;
-            else break;
+            ++j;
             in.close();
         }
     }

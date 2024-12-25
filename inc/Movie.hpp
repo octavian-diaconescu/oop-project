@@ -9,9 +9,9 @@ class Movie : public Content {
     std::string runtime; //hh:mm
 
 public:
-    Movie();
+    Movie() = default;
 
-   // explicit Movie(std::string , const std::string &, float, const std::string &);
+    // explicit Movie(std::string , const std::string &, float, const std::string &);
 
     Movie(const Movie &) = default;
 

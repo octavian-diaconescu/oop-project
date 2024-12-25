@@ -15,8 +15,8 @@ ostream &operator<<(ostream &out, const TVShow &obj) {
     return out;
 }
 
-TVShow::TVShow() : Content(){
-}
+// TVShow::TVShow() : Content() {
+// }
 
 void TVShow::printInfo() const {
     cout << "Title: " << title << '|' << "Age Rating: " << ageRating << '|' << "Rating: " << rating << "|Category: " <<

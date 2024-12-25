@@ -6,7 +6,7 @@ class Episode : public Content {
     std::string epS; //S01Ep01
     std::string runtime;
 public:
-    Episode();
+    Episode() = default;
 
     // explicit Episode(const std::string &, std::string ,std::string, float);
 

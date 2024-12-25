@@ -14,8 +14,8 @@ using namespace std;
 //     return *this;
 // }
 
-Episode::Episode(): Content(), epS("empty"), runtime("empty") {
-}
+// Episode::Episode(): Content(), epS("empty"), runtime("empty") {
+// }
 
 void Episode::printInfo() const {
     cout << epS <<  " " << title << " " << rating << " " << runtime << endl;

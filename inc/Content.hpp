@@ -14,7 +14,7 @@ protected:
     Category category;
 
 public:
-    Content();
+    Content() = default;
 
     Content(std::string, float, std::string);
 

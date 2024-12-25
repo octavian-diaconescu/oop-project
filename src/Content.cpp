@@ -2,7 +2,7 @@
 #include <iostream>
 #include <utility>
 
-Content::Content(): title("empty"), rating(0), ageRating("empty"), progress(true), inWatchlist(false), userRating("undefined"), category("empty"){};
+//Content::Content(): title("empty"), rating(0), ageRating("empty"), progress(true), inWatchlist(false), userRating("undefined"), category("empty"){};
 
 Content::Content(std::string  T, const float R, std::string  ageR) : title(std::move(T)), rating(R), ageRating(std::move(ageR)), progress(true), inWatchlist(false), userRating("undefined"), category("empty") {};
 

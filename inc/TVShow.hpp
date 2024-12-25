@@ -8,7 +8,7 @@
 class TVShow : public Content {
     std::vector<Episode> episodes;
 public:
-    TVShow();
+    TVShow() = default;
 
     TVShow(const TVShow &) = default;
 
