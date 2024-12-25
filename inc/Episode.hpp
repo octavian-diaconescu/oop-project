@@ -3,8 +3,8 @@
 #include "Content.hpp"
 
 class Episode : public Content {
-    std::string epS; //S01Ep01
-    std::string runtime;
+    std::string epS = "empty"; //S01Ep01
+    std::string runtime = "empty";
 public:
     Episode() = default;
 

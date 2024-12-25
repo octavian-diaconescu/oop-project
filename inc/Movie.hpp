@@ -6,7 +6,7 @@
 #include "Content.hpp"
 
 class Movie : public Content {
-    std::string runtime; //hh:mm
+    std::string runtime = "empty"; //hh:mm
 
 public:
     Movie() = default;

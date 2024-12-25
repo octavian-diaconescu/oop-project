@@ -53,7 +53,7 @@ ostream& operator<<(ostream& out, const Movie& movie)
 
 void Movie::readFile(istream& mfin, std::vector<Movie>& movies)
 {
-    Movie movie;
+    auto movie = Movie();
     while (mfin >> movie)
         movies.push_back(movie);
 }

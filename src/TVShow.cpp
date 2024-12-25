@@ -37,7 +37,7 @@ std::string TVShow::getTitle() const {
 }
 
 void TVShow::populateEpisodes(istream &in) {
-    Episode eps;
+    auto eps = Episode();
     //int j = 0, size = 0;
     while (in >> eps) {
         // show.episodes.resize(++size);
@@ -55,7 +55,7 @@ void TVShow::printEpisodes(const string &Title) const {
 }
 
 void TVShow::readFile(istream &sfin, std::vector<TVShow> &vector) {
-    TVShow tvshow;
+    auto tvshow = TVShow();
     while (sfin >> tvshow)
         vector.push_back(tvshow);
 }

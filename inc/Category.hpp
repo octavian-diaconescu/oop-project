@@ -2,7 +2,7 @@
 #include <string>
 
 class Category {
-    std::string name;
+    std::string name = "empty";
 
 public:
     Category();
