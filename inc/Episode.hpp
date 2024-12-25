@@ -7,15 +7,15 @@ class Episode : public Content {
     std::string runtime;
 
 public:
-    Episode();
+    Episode() = default;
 
-    explicit Episode(const std::string &, std::string ,std::string, float);
+    // explicit Episode(const std::string &, std::string ,std::string, float);
 
     Episode(const Episode &) = default;
 
     Episode &operator=(const Episode &) = default;
 
-    Episode &operator+(const Episode &);
+    // Episode &operator+(const Episode &);
 
     void printInfo() const override;
 

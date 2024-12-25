@@ -46,10 +46,11 @@ void TVShow::populateEpisodes(vector<TVShow> &tvshows) {
                 cerr << "Error opening file " << names[i] + ".txt" << endl;
             }
             Episode eps;
-            int j = 0, size = 0;
+            //int j = 0, size = 0;
             while (in >> eps) {
-                show.episodes.resize(++size);
-                show.episodes[j++] + eps;
+                // show.episodes.resize(++size);
+                // show.episodes[j++] + eps;
+                show.episodes.push_back(eps);
             }
             in.close();
             ++i;
