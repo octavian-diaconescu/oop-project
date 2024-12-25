@@ -39,7 +39,9 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
                 cerr << "Error opening file " << names[j] + ".txt" << endl;
             }
             i.populateEpisodes(in);
-            j++;
+            if (static_cast<size_t> (j) < names.size())
+                ++j;
+            else break;
             in.close();
         }
     }
