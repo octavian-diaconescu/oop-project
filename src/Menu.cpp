@@ -14,10 +14,10 @@ Menu::Menu(const Menu &other) {
 Menu &Menu::instance() { return uniqueInstance; }
 
 void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
-    ifstream mfin("movies.in");
-    ifstream sfin("tvshows.in");
+    ifstream mfin("input_files/movies.in");
+    ifstream sfin("input_files/tvshows.in");
     if (!mfin.is_open() || !sfin.is_open()) {
-        std::cerr << "Error opening files" << std::endl;
+        std::cerr << "Error opening files (in function populateDB)" << std::endl;
         return;
     }
     Movie::readFile(mfin, movies);

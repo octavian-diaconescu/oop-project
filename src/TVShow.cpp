@@ -42,6 +42,9 @@ void TVShow::populateEpisodes(vector<TVShow> &tvshows) {
     for (auto &show: tvshows) {
         if (show.title == names[i]) {
             ifstream in(names[i] + ".txt");
+            if (!in.is_open()) {
+                cerr << "Error opening file " << names[i] + ".txt" << endl;
+            }
             Episode eps;
             int j = 0, size = 0;
             while (in >> eps) {
