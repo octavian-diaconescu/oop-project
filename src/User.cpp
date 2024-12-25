@@ -58,7 +58,6 @@ void User::printWatchlistContents() const {
 
 void User::createWatchlist() {
     cout << "Do you want to name your watchlist? (y/n): ";
-    int i = 0;
     char answer;
     string name;
     Watchlist obj1;
@@ -70,21 +69,17 @@ void User::createWatchlist() {
             getline(cin, name);
             obj1.setName(name);
             watchlist.push_back(obj1);
-            ++i;
             break;
         case 'Y':
             cout << "Please enter your watchlist name: ";
             getline(cin, name);
             obj1.setName(name);
             watchlist.push_back(obj1);
-            i++;
             break;
         case 'n':
-            ++i;
             watchlist.push_back(obj1);
             break;
         case 'N':
-            i++;
             watchlist.push_back(obj1);
             break;
         default:
