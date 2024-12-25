@@ -39,8 +39,8 @@ void Menu::run() {
     User &user = User::instance();
     string title;
     int choice = 1;
-    int i = 0;
-    while (choice && i <= 100) {
+    int x = 0;
+    while (choice && x <= 100) {
         bool chk = false;
         cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
                 "4 to print the contents of a watchlist, 5 to show the episodes from a TV Show,\n"
@@ -55,25 +55,25 @@ void Menu::run() {
                 break;
             case 1:
                 user.createWatchlist();
-                ++i;
+                ++x;
                 break;
             case 2:
                 if (user.checkWatchlist())
                     break;
                 user.addMovie(movies);
-                ++i;
+                ++x;
                 break;
             case 3:
                 if (user.checkWatchlist())
                     break;
                 user.addTVShow(tvShow);
-                ++i;
+                ++x;
                 break;
             case 4:
                 if (user.checkWatchlist())
                     break;
                 user.printWatchlistContents();
-                ++i;
+                ++x;
                 break;
             case 5:
                 cout << "Title: ";
@@ -85,26 +85,26 @@ void Menu::run() {
                 }
                 if (!chk)
                     cout << "Show not found or there is a typo in your title." << endl;
-                ++i;
+                ++x;
                 break;
             case 6:
                 if (user.checkWatchlist())
                     break;
                 user.markAsWatched();
-                ++i;
+                ++x;
                 break;
             case 7:
                 if (user.checkWatchlist())
                     break;
                 user.listSorted();
-                ++i;
+                ++x;
                 break;
             default:
-                ++i;
+                ++x;
                 cout << "Invalid choice." << endl;
                 break;
         }
     }
-    if (i > 100)
+    if (x > 100)
         cout << "Too many invalid choices. Program will now shutdown." << endl;
 }
