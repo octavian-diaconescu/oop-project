@@ -15,8 +15,7 @@ class User {
   static User uniqueInstance;
   int data;
 
-  explicit User(const int d = 0) : data(d) {
-  }
+  explicit User(int d = 0);
 
   User &operator=(const User &) = default;
 

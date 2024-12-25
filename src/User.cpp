@@ -2,10 +2,12 @@
 #include <fstream>
 #include "Watchlist.hpp"
 #include "User.hpp"
-
 #include <algorithm>
 #include "Movie.hpp"
 using namespace std;
+
+User::User(const int d) : data(d) {
+}
 
 
 // User::User(const User &other) {
@@ -263,7 +265,9 @@ void User::listSorted() const {
         cin >> id;
     }
     auto contents = watchlist[id].getContents();
-    sort(contents.begin(), contents.end(), [](const shared_ptr<Content> &i, const shared_ptr<Content> &j) {return i->getCategory() < j->getCategory();});
+    sort(contents.begin(), contents.end(), [](const shared_ptr<Content> &i, const shared_ptr<Content> &j) {
+        return i->getCategory() < j->getCategory();
+    });
 
     cout << "Movies in watchlist: " << endl;
     for (const auto &content: contents)

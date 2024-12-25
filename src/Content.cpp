@@ -7,7 +7,7 @@ Content::Content(): title(" "), rating(0), ageRating(" "), progress(true), inWat
 Content::Content(std::string  T, const float R, std::string  ageR) : title(std::move(T)), rating(R), ageRating(std::move(ageR)), progress(true), inWatchlist(false), userRating("undefined"), category("empty") {};
 
 
-Category Content::getCategory() const {
+const Category &Content::getCategory() const {
     return category;
 }
 

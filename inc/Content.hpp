@@ -24,7 +24,7 @@ public:
 
     [[nodiscard]] virtual std::string getTitle() const = 0;
 
-    [[nodiscard]] Category getCategory() const;
+    [[nodiscard]] const Category &getCategory() const;
 
     void userRates();
 
