@@ -14,9 +14,9 @@ Menu::Menu(const Menu &other) {
 Menu &Menu::instance() { return uniqueInstance; }
 
 void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
-    ifstream mfin("../input_files/movies.in");
-    ifstream sfin("../input_files/tvshows.in");
-    if (!mfin.is_open() || !sfin.is_open()) {
+    ifstream movies_in("../input_files/movies.txt");
+    ifstream shows_in("../input_files/tvshows.txt");
+    if (!movies_in.is_open() || !shows_in.is_open()) {
         std::cerr << "Error opening files (in function populateDB)" << std::endl;
         return;
     }
@@ -25,10 +25,10 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
         "The_Office", "The_Sopranos", "The_Wire"
     };
 
-    Movie::readFile(mfin, movies);
+    Movie::readFile(movies_in, movies);
     // for (const auto & movie : movies)
     //     cout << movie << endl;
-    TVShow::readFile(sfin, tv_shows);
+    TVShow::readFile(shows_in, tv_shows);
     // for (auto& tvshow : tv_shows)
     //     cout << tvshow << endl;
     int j = 0;
@@ -43,8 +43,8 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
             in.close();
         }
     }
-    mfin.close();
-    sfin.close();
+    movies_in.close();
+    shows_in.close();
 }
 
 void Menu::run() {

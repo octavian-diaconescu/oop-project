@@ -24,7 +24,7 @@ public:
 
     [[nodiscard]] std::string getTitle() const override;
 
-    void populateEpisodes(std::istream&);
+    void populateEpisodes(std::istream &);
 
     void printEpisodes(const std::string&) const ;
 
