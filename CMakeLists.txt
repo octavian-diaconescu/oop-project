@@ -181,7 +181,6 @@ add_executable(project
         inc/Movie.hpp
         inc/Watchlist.hpp
         inc/Category.hpp
-        inc/Actor.hpp
         inc/Content.hpp
         inc/Episode.hpp
         inc/Menu.hpp
@@ -193,7 +192,6 @@ add_executable(project
         src/TVShow.cpp
         src/Content.cpp
         src/Episode.cpp
-        src/Actor.cpp
         src/Category.cpp
         main.cpp)
 
