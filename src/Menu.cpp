@@ -35,7 +35,7 @@ void Menu::run() {
     cout << "Populating database, please wait..." << endl << endl;
     vector<Movie> movies;
     vector<TVShow> tvShow;
-    populateDB(movies, tvShow);
+    //populateDB(movies, tvShow);
     User &user = User::instance();
     string title;
     int choice = 1;
