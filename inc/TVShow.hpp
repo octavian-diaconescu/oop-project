@@ -24,7 +24,7 @@ public:
 
     [[nodiscard]] std::string getTitle() const override;
 
-    static void populateEpisodes(std::vector<TVShow> &tvshows);
+    void populateEpisodes(std::istream&);
 
     void printEpisodes(const std::string&) const ;
 

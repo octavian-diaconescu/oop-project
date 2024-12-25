@@ -33,35 +33,19 @@ std::string TVShow::getTitle() const {
     return title;
 }
 
-void TVShow::populateEpisodes(vector<TVShow> &tvshows) {
-    const vector<string> names = {
-        "Black_Mirror", "Breaking_Bad", "Friends", "Game_of_Thrones", "Sherlock", "Stranger_Things", "The_Crown",
-        "The_Office", "The_Sopranos", "The_Wire"
-    };
-    int i = 0;
-    for (auto &show: tvshows) {
-        if (show.title == names[i]) {
-            ifstream in("../input_files/" + names[i] + ".txt");
-            if (!in.is_open()) {
-                cerr << "Error opening file " << names[i] + ".txt" << endl;
-            }
-            Episode eps;
-            //int j = 0, size = 0;
-            while (in >> eps) {
-                // show.episodes.resize(++size);
-                // show.episodes[j++] + eps;
-                show.episodes.push_back(eps);
-            }
-            in.close();
-            ++i;
-        }
+void TVShow::populateEpisodes(istream &in) {
+    Episode eps;
+    //int j = 0, size = 0;
+    while (in >> eps) {
+        // show.episodes.resize(++size);
+        // show.episodes[j++] + eps;
+        this->episodes.push_back(eps);
     }
 }
 
-void TVShow::printEpisodes(const string& Title) const {
-
-    if (title == Title ) {
-    for (const auto &episode: episodes)
+void TVShow::printEpisodes(const string &Title) const {
+    if (title == Title) {
+        for (const auto &episode: episodes)
             cout << episode;
     }
     cout << endl;

@@ -20,13 +20,29 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
         std::cerr << "Error opening files (in function populateDB)" << std::endl;
         return;
     }
+    const vector<string> names = {
+        "Black_Mirror", "Breaking_Bad", "Friends", "Game_of_Thrones", "Sherlock", "Stranger_Things", "The_Crown",
+        "The_Office", "The_Sopranos", "The_Wire"
+    };
+
     Movie::readFile(mfin, movies);
     // for (const auto & movie : movies)
     //     cout << movie << endl;
     TVShow::readFile(sfin, tv_shows);
     // for (auto& tvshow : tv_shows)
     //     cout << tvshow << endl;
-    TVShow::populateEpisodes(tv_shows);
+    int j = 0;
+    for (auto &i: tv_shows) {
+        if (i.getTitle() == names[j]) {
+            ifstream in("../input_files/" + names[j] + ".txt");
+            if (!in.is_open()) {
+                cerr << "Error opening file " << names[j] + ".txt" << endl;
+            }
+            i.populateEpisodes(in);
+            j++;
+            in.close();
+        }
+    }
     mfin.close();
     sfin.close();
 }
