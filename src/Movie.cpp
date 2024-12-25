@@ -6,13 +6,13 @@
 #include <vector>
 using namespace std;
 
-Movie::Movie() : Content(), runtime(" ")
-{
-}
+// Movie::Movie() : Content(), runtime(" ")
+// {
+// }
 
-Movie::Movie(string  rt, const string& Title, const float R, const string& ageR) : Content(Title, R, ageR), runtime(std::move(rt))
-{
-}
+// Movie::Movie(string  rt, const string& Title, const float R, const string& ageR) : Content(Title, R, ageR), runtime(std::move(rt))
+// {
+// }
 
 // Movie::Movie(const Movie & other)  : Content(other) {
 //     this->runtime = other.runtime;
@@ -26,6 +26,9 @@ Movie::Movie(string  rt, const string& Title, const float R, const string& ageR)
 //     }
 //     return *this;
 // }
+
+Movie::Movie() : Content(), runtime("empty"){
+}
 
 std::string Movie::getTitle() const
 {

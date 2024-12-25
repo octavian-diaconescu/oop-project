@@ -1,5 +1,5 @@
 #include <fstream>
-#include <TVShow.hpp>
+#include "TVShow.hpp"
 #include <iostream>
 using namespace std;
 
@@ -13,6 +13,9 @@ istream &operator>>(istream &in, TVShow &tvshow) {
 ostream &operator<<(ostream &out, const TVShow &obj) {
     out << obj.title << "| " << obj.rating << "| " << obj.ageRating << "| " << obj.category;
     return out;
+}
+
+TVShow::TVShow() : Content(){
 }
 
 void TVShow::printInfo() const {

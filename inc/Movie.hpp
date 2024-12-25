@@ -7,12 +7,11 @@
 
 class Movie : public Content {
     std::string runtime; //hh:mm
-    //std::vector<Actor> actors;
 
 public:
     Movie();
 
-    explicit Movie(std::string , const std::string &, float, const std::string &);
+   // explicit Movie(std::string , const std::string &, float, const std::string &);
 
     Movie(const Movie &) = default;
 
