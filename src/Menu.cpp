@@ -16,6 +16,10 @@ Menu &Menu::instance() { return uniqueInstance; }
 void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
     ifstream mfin("movies.in");
     ifstream sfin("tvshows.in");
+    if (!mfin.is_open() || !sfin.is_open()) {
+        std::cerr << "Error opening files" << std::endl;
+        return;
+    }
     Movie::readFile(mfin, movies);
     // for (const auto & movie : movies)
     //     cout << movie << endl;
@@ -24,6 +28,7 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
     //     cout << tvshow << endl;
     TVShow::populateEpisodes(tv_shows);
     mfin.close();
+    sfin.close();
 }
 
 void Menu::run() {
@@ -33,8 +38,8 @@ void Menu::run() {
     populateDB(movies, tvShow);
     User &user = User::instance();
     string title;
-    while (true) {
-        int choice;
+    int choice = 1;
+    while (choice) {
         bool chk = false;
         cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
                 "4 to print the contents of a watchlist, 5 to show the episodes from a TV Show,\n"
@@ -45,7 +50,8 @@ void Menu::run() {
         switch (choice) {
             case 0:
                 cout << "Exiting..." << endl;
-                exit(0);
+                choice = 0;
+                break;
             case 1:
                 user.createWatchlist();
                 break;
