@@ -18,9 +18,9 @@ class User {
   explicit User(const int d = 0) : data(d) {
   }
 
-  User &operator=(const User &);
+  User &operator=(const User &) = default;
 
-  User(const User &);
+  User(const User &) = default;
 
 public:
   static User &instance();
@@ -41,13 +41,9 @@ public:
 
   void markAsWatched() const;
 
-  // void removeFromWatchlist() const;
-
-  void deleteWatchlist();
-
- // void printWatchlist() const;
+  void listSorted() const;
 
   [[nodiscard]] int checkWatchlist() const;
 
-  ~User();
+  ~User() = default;
 };

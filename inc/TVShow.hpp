@@ -26,7 +26,7 @@ public:
 
     static void populateEpisodes(std::vector<TVShow> &tvshows);
 
-    void printEpisodes() const ;
+    void printEpisodes(const std::string&) const ;
 
     ~TVShow() override = default;
 

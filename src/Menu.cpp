@@ -3,11 +3,13 @@
 #include <User.hpp>
 #include <iostream>
 #include <TVShow.hpp>
-
-#include "Actor.hpp"
 #include "Movie.hpp"
 Menu Menu::uniqueInstance(0);
 using namespace std;
+
+Menu::Menu(const Menu &other) {
+    data = other.data;
+}
 
 Menu &Menu::instance() { return uniqueInstance; }
 
@@ -36,14 +38,13 @@ void Menu::run() {
         bool chk = false;
         cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
                 "4 to print the contents of a watchlist, 5 to show the episodes from a TV Show,\n"
-                "6 to update the status of a movie/tv show, 7 to delete a watchlist\n"
+                "6 to update the status of a movie/tv show,\n"
+                "7 to list movies and shows from a watchlist sorted by category"
                 "0 to end the program" << endl;
         cin >> choice;
         switch (choice) {
             case 0:
                 cout << "Exiting..." << endl;
-                movies.clear();
-                tvShow.clear();
                 exit(0);
             case 1:
                 user.createWatchlist();
@@ -69,7 +70,7 @@ void Menu::run() {
                 cout << endl;
                 for (const auto &i: tvShow) {
                     if (i.getTitle() == title)
-                        i.printEpisodes(), chk = true;
+                        i.printEpisodes(title), chk = true;
                 }
                 if (!chk)
                     cout << "Show not found or there is a typo in your title." << endl;
@@ -82,7 +83,7 @@ void Menu::run() {
             case 7:
                 if (user.checkWatchlist())
                     break;
-                user.deleteWatchlist();
+                user.listSorted();
                 break;
             default:
                 cout << "Invalid choice." << endl;

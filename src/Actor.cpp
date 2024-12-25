@@ -7,7 +7,7 @@
 
 Actor::Actor() : name(" "), nationality(" "), birthDate(" "), birthCity(" ") {};
 
-Actor::Actor(std::string Name, std::string Nationality, std::string bdate, std::string bcity) : name(Name), nationality(Nationality), birthDate(bdate), birthCity(bcity){};
+Actor::Actor(const std::string &Name, const std::string &Nationality, const std::string &bdate, const std::string &bcity) : name(Name), nationality(Nationality), birthDate(bdate), birthCity(bcity){};
 
 std::ifstream& operator>>(std::ifstream& fin, Actor& act)
 {

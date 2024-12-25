@@ -10,7 +10,7 @@ Movie::Movie() : Content(), runtime(" ")
 {
 }
 
-Movie::Movie(const string& rt, const string& Title, const float R, const string& ageR) : Content(Title, R, ageR), runtime(rt)
+Movie::Movie(string  rt, const string& Title, const float R, const string& ageR) : Content(Title, R, ageR), runtime(std::move(rt))
 {
 }
 

@@ -12,7 +12,7 @@ class Actor {
 public:
     Actor();
 
-    Actor(std::string, std::string, std::string, std::string);
+    Actor(const std::string &, const std::string &, const std::string &, const std::string &);
 
     // std::string getName();
     // std::string getNationality();

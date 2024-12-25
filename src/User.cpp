@@ -2,31 +2,36 @@
 #include <fstream>
 #include "Watchlist.hpp"
 #include "User.hpp"
+
+#include <algorithm>
+#include <bits/ranges_algo.h>
+
 #include "Movie.hpp"
 using namespace std;
 
 
-User::User(const User &other) {
-    fullName = other.fullName;
-    birthDate = other.birthDate;
-    preferredLanguage = other.preferredLanguage;
-    watchlist = other.watchlist;
-    data = other.data;
-}
+// User::User(const User &other) {
+//     fullName = other.fullName;
+//     birthDate = other.birthDate;
+//     preferredLanguage = other.preferredLanguage;
+//     watchlist = other.watchlist;
+//     data = other.data;
+// }
 
 User &User::instance() {
     return uniqueInstance;
 }
 
-User &User::operator=(const User &other) {
-    if (this != &other) {
-        fullName = other.fullName;
-        birthDate = other.birthDate;
-        preferredLanguage = other.preferredLanguage;
-        watchlist = other.watchlist;
-    }
-    return *this;
-}
+// User &User::operator=(const User &other) {
+//     if (this != &other) {
+//         fullName = other.fullName;
+//         birthDate = other.birthDate;
+//         preferredLanguage = other.preferredLanguage;
+//         watchlist = other.watchlist;
+//         data = other.data;
+//     }
+//     return *this;
+// }
 
 void User::printWatchlistContents() const {
     int id;
@@ -107,7 +112,7 @@ void User::addMovie(vector<Movie> &mvs) {
         cin.ignore();
         cin >> id;
     }
-    if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
+    if (id < 0 || id > Watchlist::getCnt()) {
         cout << "Please enter a valid ID!\nID: ";
         cin >> id;
     }
@@ -158,7 +163,7 @@ void User::addTVShow(vector<TVShow> &tvs) {
         cin >> id;
         cout.flush();
 
-        if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
+        if (id < 0 || id > Watchlist::getCnt()) {
             cout << "Please enter a valid ID!\nID: ";
             cin >> id;
         }
@@ -187,8 +192,6 @@ void User::addTVShow(vector<TVShow> &tvs) {
                 << endl;
     if (ok) {
         cout << "Added successfully." << endl;
-        // cout << "TV Shows in '" << watchlist[id].getName() << "': " << endl;
-        // watchlist[id].printContents();
     }
 }
 
@@ -208,7 +211,7 @@ void User::markAsWatched() const {
         cin.ignore();
         cin >> id;
     }
-    if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
+    if (id < 0 || id > Watchlist::getCnt()) {
         cout << "Please enter a valid ID!\nID: ";
         cin >> id;
     }
@@ -241,72 +244,41 @@ void User::markAsWatched() const {
     }
 }
 
-void User::deleteWatchlist() {
-    cout << "Enter ID: ";
+void User::listSorted() const {
+    cout << "Available watchlists: " << endl;
+    for (const auto &i: watchlist)
+        cout << "ID: " << i.getID() << " | Name: " << i.getName() << endl;
+    cout << endl;
+    cout << "Enter the ID of the watchlist that you want to list(sorted): ";
     int id;
     cin >> id;
-   if (id < 0 || static_cast<size_t>(id) > watchlist.size()) {
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input. Please enter an integer!\n";
+        cout << "ID: ";
+        cin.ignore();
+        cin >> id;
+    }
+    if (id < 0 || id > Watchlist::getCnt()) {
         cout << "Please enter a valid ID!\nID: ";
         cin >> id;
     }
-    for (auto it = watchlist.begin(); it != watchlist.end(); ++it) {
-        if (it->getID() == id) {
-            watchlist.erase(it);
-            break;
+    auto contents = watchlist[id].getContents();
+    ranges::sort(contents, [](const shared_ptr<Content> &i, const shared_ptr<Content> &j) {return i->getCategory() < j->getCategory();});
+
+    cout << "Movies in watchlist: " << endl;
+    for (const auto &content: contents)
+        if (const auto *movie = dynamic_cast<Movie *>(content.get())) {
+            movie->printInfo();
         }
-    }
+    cout << "TV Shows in watchlist: " << endl;
+    for (const auto& content: contents)
+        if (const auto *tvs = dynamic_cast<TVShow *>(content.get())) {
+            tvs->printInfo();
+        }
+    cout << endl;
 }
-
-// void User::removeFromWatchlist() const {
-//     cout << "Available watchlists: " << endl;
-//     for (const auto &i: watchlist)
-//         cout << "ID: " << i.getID() << " | Name: " << i.getName() << endl;
-//     cout << endl;
-//     cout << "Enter the ID of the watchlist from which you want to remove: ";
-//     int id;
-//     cin >> id;
-//     if (cin.fail()) {
-//         cin.clear();
-//         cin.ignore();
-//         cout << "Invalid input. Please enter an integer!\n";
-//         cout << "ID: ";
-//         cin.ignore();
-//         cin >> id;
-//     }
-//     if (id < 0 || id > watchlist.size()) {
-//         cout << "Please enter a valid ID!\nID: ";
-//         cin >> id;
-//     }
-//     cout << endl;
-//     cout << "What would you like to remove?(enter its name): ";
-//     string name;
-//     cin >> name;
-//     int ok = 0;
-//     auto cp = watchlist[id].contentsReference();
-//     for (auto it = cp.begin(); it != cp.end(); ++it) {
-//         if (dynamic_cast<Movie *>(it->get()) || dynamic_cast<TVShow *>(it->get())) {
-//             if ((*it)->getTitle() == name) {
-//                 cp.erase(it);
-//                 ok = 1;
-//                 break;
-//             }
-//         }
-//     }
-//
-//     if (!ok)
-//         cout <<
-//                 "Movie/TV Show wasn't found in the watchlist. Check your spelling."
-//                 << endl;
-//     if (ok) {
-//         //watchlist[id].insertIntoContents(cp);
-//         cout << "Removed from watchlist." << endl;
-//     }
-// }
-
-// void User::printWatchlist() const {
-//     for (const auto &i: watchlist)
-//         i.printContents();
-// }
 
 int User::checkWatchlist() const {
     if (watchlist.empty()) {
@@ -316,22 +288,6 @@ int User::checkWatchlist() const {
     return 0;
 }
 
-// void User::readFile(ifstream&fin, vector<User>& us)
-// {
-//     User user;
-//     while (fin >> user)
-//     {
-//         user.id = cnt++;
-//         us.push_back(user);
-//     }
-// }
-
-// ifstream& operator>>(ifstream& fin, User& users)
-// {
-//     fin >> users.fullName >> users.birthDate >> users.preferedLanguage;
-//     return fin;
-// }
-//
 istream &operator>>(istream &is, User &user) {
     is >> user.fullName >> user.birthDate >> user.preferredLanguage;
     return is;
@@ -344,9 +300,4 @@ ostream &operator<<(ostream &os, const User &user) {
 
 User User::uniqueInstance(0);
 
-User::~User() {
-    fullName.clear();
-    birthDate.clear();
-    preferredLanguage.clear();
-    watchlist.clear();
-}
+

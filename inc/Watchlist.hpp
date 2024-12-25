@@ -18,15 +18,17 @@ public:
 
     // const std::vector<std::shared_ptr<Content>>& contentsReference() const;
 
-    void setName(std::string);
+    static int getCnt() ;
+
+    void setName(const std::string&);
 
     [[nodiscard]] int getID() const;
 
     void printContents() const;
 
-    [[nodiscard]] std::vector<std::shared_ptr<Content>> getContents() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Content>>& getContents() const;
 
-    [[nodiscard]] std::string getName() const;
+    [[nodiscard]] const std::string& getName() const;
 
     ~Watchlist() = default;
 

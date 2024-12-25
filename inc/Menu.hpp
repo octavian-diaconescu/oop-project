@@ -11,7 +11,7 @@ class Menu {
 
     static Menu uniqueInstance;
 
-    Menu(const Menu &) = default;
+    Menu(const Menu &);
 
     Menu &operator=(const Menu &) = default;
 

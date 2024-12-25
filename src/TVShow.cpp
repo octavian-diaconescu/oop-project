@@ -54,10 +54,10 @@ void TVShow::populateEpisodes(vector<TVShow> &tvshows) {
     }
 }
 
-void TVShow::printEpisodes() const {
+void TVShow::printEpisodes(const string& Title) const {
 
-    if (this->title == title ) {
-    for (auto &episode: episodes)
+    if (title == Title ) {
+    for (const auto &episode: episodes)
             cout << episode;
     }
     cout << endl;

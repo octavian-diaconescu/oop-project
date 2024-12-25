@@ -13,9 +13,11 @@ public:
 
     friend std::ostream &operator<<(std::ostream &, const Category &);
 
-    Category &operator=(const Category &);
+    friend bool operator<(const Category &, const Category &);
 
-    Category(const Category &);
+    Category &operator=(const Category &) = default;
+
+    Category(const Category &) = default;
 
     //[[nodiscard]] std::string Name() const;
 

@@ -12,12 +12,17 @@ int Watchlist::cnt = -1;
 Watchlist::Watchlist() : name("watchlist"), id(++cnt) {
 }
 
-void Watchlist::setName(string n) {
-  name = move(n);
+void Watchlist::setName(const string& n) {
+  name = n;
 }
 
 void Watchlist::addContent(const shared_ptr<Content> &content) {
   contents.push_back(content);
+}
+
+
+int Watchlist::getCnt() {
+  return cnt;
 }
 
 // const std::vector<std::shared_ptr<Content> > &Watchlist::contentsReference() const {
@@ -31,23 +36,21 @@ int Watchlist::getID() const {
 void Watchlist::printContents() const {
   cout << "Movies in watchlist: " << endl;
   for (const auto &content: contents)
-    if (dynamic_cast<Movie *>(content.get())) {
-      const auto *movie = dynamic_cast<Movie *>(content.get());
+    if (const auto *movie = dynamic_cast<Movie *>(content.get())) {
       movie->printInfo();
     }
   cout << "TV Shows in watchlist: " << endl;
   for (const auto& content: contents)
-    if (dynamic_cast<TVShow *>(content.get())) {
-      const auto *tvs = dynamic_cast<TVShow *>(content.get());
+    if (const auto *tvs = dynamic_cast<TVShow *>(content.get())) {
       tvs->printInfo();
     }
 }
 
-vector<shared_ptr<Content> > Watchlist::getContents() const {
+const vector<shared_ptr<Content> >& Watchlist::getContents() const {
   return contents;
 }
 
-string Watchlist::getName() const {
+const string& Watchlist::getName() const {
   return name;
 }
 
