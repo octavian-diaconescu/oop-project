@@ -4,8 +4,6 @@
 #include "User.hpp"
 
 #include <algorithm>
-#include <bits/ranges_algo.h>
-
 #include "Movie.hpp"
 using namespace std;
 
@@ -265,7 +263,7 @@ void User::listSorted() const {
         cin >> id;
     }
     auto contents = watchlist[id].getContents();
-    ranges::sort(contents, [](const shared_ptr<Content> &i, const shared_ptr<Content> &j) {return i->getCategory() < j->getCategory();});
+    sort(contents.begin(), contents.end(), [](const shared_ptr<Content> &i, const shared_ptr<Content> &j) {return i->getCategory() < j->getCategory();});
 
     cout << "Movies in watchlist: " << endl;
     for (const auto &content: contents)
