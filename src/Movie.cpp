@@ -57,7 +57,6 @@ ostream& operator<<(ostream& out, const Movie& movie)
 
 void Movie::readFile(istream& mfin, std::vector<Movie>& movies)
 {
-    //auto movie = Movie();
     MovieBuilder builder;
     Movie movie = builder.build();
     while (mfin >> movie)

@@ -63,7 +63,7 @@ void User::printWatchlistContents() const {
 
 void User::createWatchlist() {
     cout << "Do you want to name your watchlist? (y/n): ";
-    char answer;
+    char answer = 'n';
     string name;
     Watchlist obj1;
     cin >> answer;
