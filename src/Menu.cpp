@@ -4,6 +4,7 @@
 #include <iostream>
 #include <TVShow.hpp>
 #include "Movie.hpp"
+#include "Storage.hpp"
 Menu Menu::uniqueInstance(0);
 using namespace std;
 
@@ -26,11 +27,7 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
     };
 
     Movie::readFile(movies_in, movies);
-    // for (const auto & movie : movies)
-    //     cout << movie << endl;
     TVShow::readFile(shows_in, tv_shows);
-    // for (auto& tvshow : tv_shows)
-    //     cout << tvshow << endl;
     size_t j = 0;
     for (auto &i: tv_shows) {
         if (j >= names.size()) break;
@@ -55,6 +52,7 @@ void Menu::run() {
     vector<TVShow> tvShow;
     populateDB(movies, tvShow);
     User &user = User::instance();
+    //User::registerUser(user);
     string title;
     int choice = 1;
     int x = 0;

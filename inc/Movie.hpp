@@ -9,9 +9,11 @@ class Movie : public Content {
     std::string runtime = "empty"; //hh:mm
 
 public:
+    friend class MovieBuilder;
+
     Movie() = default;
 
-    // explicit Movie(std::string , const std::string &, float, const std::string &);
+    explicit Movie(const std::string& , const std::string &, float);
 
     Movie(const Movie &) = default;
 

@@ -30,7 +30,7 @@ public:
 
   void printWatchlistContents() const;
 
-  //static void registerUser(User &);
+  //static void registerUser(User&);
 
   void createWatchlist();
 

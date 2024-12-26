@@ -13,9 +13,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # You aren't supposed to be using this, but convenience...
 file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/*")
-file(GLOB_RECURSE HEADERS RELATIVE ${CMAKE_SOURCE_DIR} "include/*")
+file(GLOB_RECURSE HEADERS RELATIVE ${CMAKE_SOURCE_DIR} "inc/*")
 file(GLOB_RECURSE TESTS RELATIVE ${CMAKE_SOURCE_DIR} "test/*.cpp")
 include_directories(inc)
+include_directories(include)
 include_directories(src)
 
 option(WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
@@ -177,23 +178,27 @@ endif ()
 enable_testing()
 
 add_executable(project
-        inc/User.hpp
-        inc/Movie.hpp
-        inc/Watchlist.hpp
+        inc/Builder.hpp
         inc/Category.hpp
         inc/Content.hpp
         inc/Episode.hpp
         inc/Menu.hpp
+        inc/Movie.hpp
+        inc/Storage.hpp
         inc/TVShow.hpp
-        src/Watchlist.cpp
-        src/User.cpp
-        src/Movie.cpp
-        src/Menu.cpp
-        src/TVShow.cpp
+        inc/User.hpp
+        inc/Watchlist.hpp
+        main.cpp
+        src/Builder.cpp
+        src/Category.cpp
         src/Content.cpp
         src/Episode.cpp
-        src/Category.cpp
-        main.cpp)
+        src/Menu.cpp
+        src/Movie.cpp
+        src/TVShow.cpp
+        src/User.cpp
+        src/Watchlist.cpp
+)
 
 target_link_libraries(
         Proiect

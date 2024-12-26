@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "Builder.hpp"
 using namespace std;
 
 // Movie::Movie(const Movie & other)  : Content(other) {
@@ -21,6 +22,9 @@ using namespace std;
 
 // Movie::Movie() : Content(), runtime("empty") {
 // }
+
+Movie::Movie(const std::string& title, const std::string &ageRating, const float R) : Content(title, R, ageRating) {
+}
 
 std::string Movie::getTitle() const
 {
@@ -53,7 +57,9 @@ ostream& operator<<(ostream& out, const Movie& movie)
 
 void Movie::readFile(istream& mfin, std::vector<Movie>& movies)
 {
-    auto movie = Movie();
+    //auto movie = Movie();
+    MovieBuilder builder;
+    Movie movie = builder.build();
     while (mfin >> movie)
         movies.push_back(movie);
 }

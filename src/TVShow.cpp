@@ -1,6 +1,8 @@
 #include <fstream>
 #include "TVShow.hpp"
 #include <iostream>
+
+#include "Builder.hpp"
 using namespace std;
 
 
@@ -15,9 +17,6 @@ ostream &operator<<(ostream &out, const TVShow &obj) {
     return out;
 }
 
-// TVShow::TVShow() : Content() {
-// }
-
 void TVShow::printInfo() const {
     cout << "Title: " << title << '|' << "Age Rating: " << ageRating << '|' << "Rating: " << rating << "|Category: " <<
             category;
@@ -28,20 +27,13 @@ void TVShow::printInfo() const {
     cout << endl;
 }
 
-// vector<Episode> *TVShow::getEpisodes() {
-//     return &episodes;
-// }
-
 std::string TVShow::getTitle() const {
     return title;
 }
 
 void TVShow::populateEpisodes(istream &in) {
     auto eps = Episode();
-    //int j = 0, size = 0;
     while (in >> eps) {
-        // show.episodes.resize(++size);
-        // show.episodes[j++] + eps;
         this->episodes.push_back(eps);
     }
 }
@@ -55,7 +47,8 @@ void TVShow::printEpisodes(const string &Title) const {
 }
 
 void TVShow::readFile(istream &sfin, std::vector<TVShow> &vector) {
-    auto tvshow = TVShow();
+    TVShowBuilder builder;
+    TVShow tvshow = builder.build();
     while (sfin >> tvshow)
         vector.push_back(tvshow);
 }

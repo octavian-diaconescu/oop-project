@@ -12,12 +12,17 @@ int Watchlist::cnt = -1;
 Watchlist::Watchlist() : name("watchlist"), id(++cnt) {
 }
 
-void Watchlist::setName(const string& n) {
-  name = n;
-}
+// void Watchlist::setName(const string& n) {
+//   name = n;
+// }
 
 void Watchlist::addContent(const shared_ptr<Content> &content) {
   contents.push_back(content);
+}
+
+Watchlist & Watchlist::operator+(const std::string &string) {
+  name = string;
+  return *this;
 }
 
 

@@ -1,9 +1,12 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include "Watchlist.hpp"
 #include "User.hpp"
-#include <algorithm>
 #include "Movie.hpp"
+#include "Storage.hpp"
+
+
 using namespace std;
 
 User::User(const int d) : data(d) {
@@ -43,7 +46,6 @@ void User::printWatchlistContents() const {
 }
 
 // void User::registerUser(User &other) {
-//     ofstream usersOutFile("user.out");
 //     cout << "Please enter your full name: ";
 //     getline(cin, other.fullName);
 //     cout << "Please enter your birth date:(yyyy.mm.dd) ";
@@ -52,8 +54,11 @@ void User::printWatchlistContents() const {
 //     cin >> other.preferredLanguage;
 //     cout << "Please choose a username:(must not include spaces) ";
 //     cin >> other.username;
-//     usersOutFile << other.fullName << " " << other.birthDate << " " << other.preferredLanguage << " " << other.username;
-//     usersOutFile.close();
+//     ofstream userFile("users.out");
+//     Storage<User> storeUsers;
+//     storeUsers.addItem(other);
+//     storeUsers.printItems(userFile);
+//     userFile.close();
 // }
 
 void User::createWatchlist() {
@@ -67,13 +72,14 @@ void User::createWatchlist() {
         case 'y':
             cout << "Please enter your watchlist name: ";
             getline(cin, name);
-            obj1.setName(name);
+            //obj1.setName(name);
+            obj1 + name;
             watchlist.push_back(obj1);
             break;
         case 'Y':
             cout << "Please enter your watchlist name: ";
             getline(cin, name);
-            obj1.setName(name);
+            obj1 + name;
             watchlist.push_back(obj1);
             break;
         case 'n':
@@ -86,6 +92,12 @@ void User::createWatchlist() {
             cout << "Please enter a valid option!" << endl;
             break;
     }
+    Storage<Watchlist> storeWatchlists;
+    ofstream watchlistFile("watchlists.out");
+    for (const auto &i: watchlist)
+        storeWatchlists.addItem(i);
+    storeWatchlists.printItems(watchlistFile);
+    watchlistFile.close();
 }
 
 
@@ -261,18 +273,25 @@ void User::listSorted() const {
     sort(contents.begin(), contents.end(), [](const shared_ptr<Content> &i, const shared_ptr<Content> &j) {
         return i->getCategory() < j->getCategory();
     });
-
+    Storage<Movie> storeMovie;
+    Storage<TVShow> storeTVShow;
     cout << "Movies in watchlist: " << endl;
     for (const auto &content: contents)
         if (const auto *movie = dynamic_cast<Movie *>(content.get())) {
             movie->printInfo();
+            storeMovie.addItem(*movie);
         }
     cout << "TV Shows in watchlist: " << endl;
     for (const auto &content: contents)
         if (const auto *tvs = dynamic_cast<TVShow *>(content.get())) {
             tvs->printInfo();
+            storeTVShow.addItem(*tvs);
         }
     cout << endl;
+    ofstream watchlistFile("watchlists.out", ios::app);
+    storeMovie.printItems(watchlistFile);
+    storeTVShow.printItems(watchlistFile);
+    watchlistFile.close();
 }
 
 int User::checkWatchlist() const {
