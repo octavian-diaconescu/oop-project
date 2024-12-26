@@ -56,7 +56,7 @@ void Menu::run() {
     string title;
     int choice = 1;
     int x = 0;
-    while (choice && x <= 100) {
+    while (choice && x <= 3) {
         bool chk = false;
         cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
                 "4 to print the contents of a watchlist, 5 to show the episodes from a TV Show,\n"
