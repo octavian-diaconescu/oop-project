@@ -14,41 +14,41 @@ Menu::Menu(const Menu &other) {
 
 Menu &Menu::instance() { return uniqueInstance; }
 
-void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
-    ifstream movies_in("../input_files/movies.txt");
-    ifstream shows_in("../input_files/tvshows.txt");
-    if (!movies_in || !shows_in) {
-        std::cerr << "Error opening files (in function populateDB)" << std::endl;
-        return;
-    }
-    const vector<string> names = {
-        "Black_Mirror", "Breaking_Bad", "Friends", "Game_of_Thrones", "Sherlock", "Stranger_Things", "The_Crown",
-        "The_Office", "The_Sopranos", "The_Wire"
-    };
-
-    Movie::readFile(movies_in, movies);
-    TVShow::readFile(shows_in, tv_shows);
-
-    size_t j = 0;
-    for (auto &i: tv_shows) {
-        if (j >= names.size()) break;
-        if (i.getTitle() == names[j]) {
-            ifstream in("../input_files/" + names[j] + ".txt");
-            if (!in) {
-                cerr << "Error opening file " << names[j] + ".txt" << endl;
-                continue;
-            }
-            i.populateEpisodes(in);
-            ++j;
-        }
-    }
-}
+// void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
+//     ifstream movies_in("../input_files/movies.txt");
+//     ifstream shows_in("../input_files/tvshows.txt");
+//     if (!movies_in || !shows_in) {
+//         std::cerr << "Error opening files (in function populateDB)" << std::endl;
+//         return;
+//     }
+//     const vector<string> names = {
+//         "Black_Mirror", "Breaking_Bad", "Friends", "Game_of_Thrones", "Sherlock", "Stranger_Things", "The_Crown",
+//         "The_Office", "The_Sopranos", "The_Wire"
+//     };
+//
+//     Movie::readFile(movies_in, movies);
+//     TVShow::readFile(shows_in, tv_shows);
+//
+//     size_t j = 0;
+//     for (auto &i: tv_shows) {
+//         if (j >= names.size()) break;
+//         if (i.getTitle() == names[j]) {
+//             ifstream in("../input_files/" + names[j] + ".txt");
+//             if (!in) {
+//                 cerr << "Error opening file " << names[j] + ".txt" << endl;
+//                 continue;
+//             }
+//             i.populateEpisodes(in);
+//             ++j;
+//         }
+//     }
+// }
 
 void Menu::run() {
     cout << "Populating database, please wait..." << endl << endl;
     vector<Movie> movies;
     vector<TVShow> tvShow;
-    populateDB(movies, tvShow);
+   // populateDB(movies, tvShow);
     User &user = User::instance();
     //User::registerUser(user);
     string title;
