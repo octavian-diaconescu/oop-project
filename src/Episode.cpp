@@ -22,7 +22,7 @@ Episode::Episode(const Episode &other) : Content(other) {
     runtime = other.runtime;
 }
 
-Episode &Episode::operator=(const Episode &other) : Content(other) {
+Episode &Episode::operator=(const Episode &other) {
     if (this != &other) {
         epS = other.epS;
         runtime = other.runtime;
