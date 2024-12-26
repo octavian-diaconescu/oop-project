@@ -23,7 +23,7 @@ include_directories(src)
 
 option(WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
 option(USE_ASAN "Use Address Sanitizer" OFF)
-option(USE_MSAN "Use Memory Sanitizer" OFF)
+option(USE_MSAN "Use Memory Sanitizer" ON)
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "install_dir" CACHE PATH "..." FORCE)
