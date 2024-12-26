@@ -72,7 +72,7 @@ void User::createWatchlist() {
         case 'y':
             cout << "Please enter your watchlist name: ";
             getline(cin, name);
-            //obj1.setName(name);
+        //obj1.setName(name);
             obj1 + name;
             watchlist.push_back(obj1);
             break;

@@ -23,7 +23,7 @@ using namespace std;
 // Movie::Movie() : Content(), runtime("empty") {
 // }
 
-Movie::Movie(const std::string& title, const std::string &ageRating, const float R) : Content(title, R, ageRating) {
+Movie::Movie(const std::string &title, const std::string &ageRating, const float R) : Content(title, R, ageRating) {
 }
 
 std::string Movie::getTitle() const

@@ -14,13 +14,13 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Watchlist &watchlist);
 
-    Watchlist& operator=(const Watchlist &watchlist) = default;
+    Watchlist &operator=(const Watchlist &watchlist) = default;
 
     Watchlist(const Watchlist &watchlist) = default;
 
     void addContent(const std::shared_ptr<Content>&);
 
-    Watchlist& operator+(const std::string&);
+    Watchlist &operator+(const std::string &);
 
     // const std::vector<std::shared_ptr<Content>>& contentsReference() const;
 

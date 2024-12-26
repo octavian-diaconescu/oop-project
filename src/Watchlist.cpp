@@ -20,7 +20,7 @@ void Watchlist::addContent(const shared_ptr<Content> &content) {
   contents.push_back(content);
 }
 
-Watchlist & Watchlist::operator+(const std::string &string) {
+Watchlist &Watchlist::operator+(const std::string &string) {
   name = string;
   return *this;
 }

@@ -13,7 +13,7 @@ public:
 
     Movie() = default;
 
-    explicit Movie(const std::string& , const std::string &, float);
+    explicit Movie(const std::string &, const std::string &, float);
 
     Movie(const Movie &) = default;
 
