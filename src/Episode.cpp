@@ -17,9 +17,7 @@ using namespace std;
 // Episode::Episode(): Content(), epS("empty"), runtime("empty") {
 // }
 
-Episode::Episode(const Episode &other) : Content(other) {
-    epS = other.epS;
-    runtime = other.runtime;
+Episode::Episode(const Episode &other) : Content(other), epS(other.epS), runtime(other.runtime) {
 }
 
 Episode &Episode::operator=(const Episode &other) {
