@@ -10,9 +10,9 @@ public:
 
     // explicit Episode(const std::string &, std::string ,std::string, float);
 
-    Episode(const Episode &) = default;
+    Episode(const Episode &);
 
-    Episode &operator=(const Episode &) = default;
+    Episode &operator=(const Episode &);
 
     // Episode &operator+(const Episode &);
 

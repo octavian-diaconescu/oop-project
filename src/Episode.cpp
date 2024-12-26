@@ -17,6 +17,19 @@ using namespace std;
 // Episode::Episode(): Content(), epS("empty"), runtime("empty") {
 // }
 
+Episode::Episode(const Episode &other) : Content(other) {
+    epS = other.epS;
+    runtime = other.runtime;
+}
+
+Episode &Episode::operator=(const Episode &other) : Content(other) {
+    if (this != &other) {
+        epS = other.epS;
+        runtime = other.runtime;
+    }
+    return *this;
+}
+
 void Episode::printInfo() const {
     cout << epS <<  " " << title << " " << rating << " " << runtime << endl;
 }

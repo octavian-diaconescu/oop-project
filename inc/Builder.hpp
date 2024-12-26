@@ -7,7 +7,7 @@ class MovieBuilder {
     Movie movie;
 
 public:
-    Movie build();
+   const Movie& build();
 
     // MovieBuilder& setTitle(const string& t);
     //
@@ -30,7 +30,7 @@ class TVShowBuilder {
     TVShow tvshow;
 
 public:
-    TVShow build();
+    const TVShow& build();
     // TVShowBuilder& setTitle(const string& t) {
     //     tvshow.title = t;
     //     return *this;

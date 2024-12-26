@@ -2,7 +2,7 @@
 #include "../inc/Movie.hpp"
 #include "../inc/TVShow.hpp"
 
-Movie MovieBuilder::build() {
+const Movie& MovieBuilder::build() {
     return movie;
 }
 
@@ -11,6 +11,6 @@ Movie MovieBuilder::build() {
 //         return *this;
 // }
 
-TVShow TVShowBuilder::build() {
+const TVShow& TVShowBuilder::build() {
     return tvshow;
 }
