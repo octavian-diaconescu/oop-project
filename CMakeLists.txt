@@ -12,7 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=memory")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize-memory-track-origins")
-set(CMAKE_CLANG_FLAGS "${CMAKE_CLANG_FLAGS} -fsanitize=memory -fsanitize-memory-track-origins")
 
 
 # You aren't supposed to be using this, but convenience...
@@ -25,7 +24,7 @@ include_directories(src)
 
 option(WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
 option(USE_ASAN "Use Address Sanitizer" OFF)
-option(USE_MSAN "Use Memory Sanitizer" ON)
+option(USE_MSAN "Use Memory Sanitizer" OFF)
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "install_dir" CACHE PATH "..." FORCE)
