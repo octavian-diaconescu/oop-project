@@ -94,7 +94,7 @@ function(set_custom_stdlib_and_sanitizers target add_apple_asan)
             # use semi-colons instead of spaces to separate arguments
             # it is recommended to quote generator expressions in order to avoid unintentional splitting
             target_compile_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=memory,undefined;-fsanitize-recover=memory,undefined;-fsanitize-memory-track-origins>")
-            target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=memory,undefined;-fsanitize-recover=memory,undefined;-fsanitize-memory-track-origins;-Wl,-rpath,tools/llvm-project/build/lib>")
+            target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=memory,undefined;-fsanitize-ignorelist=${MSAN_IGNORELIST_PATH};-fsanitize-recover=memory,undefined;-fsanitize-memory-track-origins;-Wl,-rpath,tools/llvm-project/build/lib>")
         endif ()
     endif ()
 endfunction()
@@ -156,6 +156,8 @@ endif ()
 
 # sanitizers
 set_custom_stdlib_and_sanitizers(${PROJECT_NAME} true)
+set(MSAN_IGNORELIST_PATH "${CMAKE_SOURCE_DIR}/msan_ignorelist.txt")
+#add_compile_options(-fsanitize-ignorelist=${MSAN_IGNORELIST_PATH})
 
 ###############################################################################
 

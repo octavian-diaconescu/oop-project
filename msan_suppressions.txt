@@ -1,7 +1,0 @@
-# Suppress uninitialized memory in standard streams
-
-race:std::istream
-
-race:std::ifstream
-
-race:std::ofstream
