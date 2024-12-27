@@ -47,8 +47,9 @@ void TVShow::printEpisodes(const string &Title) const {
 }
 
 void TVShow::readFile(istream &sfin, std::vector<TVShow> &vector) {
-    TVShowBuilder builder;
-    TVShow tvshow = builder.build();
+    // TVShowBuilder builder;
+    // TVShow tvshow = builder.build();
+    TVShow tvshow{};
     while (sfin >> tvshow)
         vector.push_back(tvshow);
 }

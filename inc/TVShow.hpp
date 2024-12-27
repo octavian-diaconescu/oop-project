@@ -9,6 +9,7 @@ class TVShow : public Content {
     std::vector<Episode> episodes;
 public:
     friend class TVShowBuilder;
+
     TVShow() = default;
 
     TVShow(const TVShow &) = default;
