@@ -21,5 +21,5 @@ public:
 
     static void run();
 
-    //static void populateDB(std::vector<Movie> &, std::vector<TVShow> &);
+    static void populateDB(std::vector<Movie> &, std::vector<TVShow> &);
 };
