@@ -15,8 +15,10 @@ Menu::Menu(const Menu &other) {
 Menu &Menu::instance() { return uniqueInstance; }
 
 void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
-    string fileName1 = "../input_files/movies.txt";
-    string fileName2 = "../input_files/tvshows.txt";
+    string fileName1{};
+    fileName1 = "../input_files/movies.txt";
+    string fileName2{};
+    fileName2 = "../input_files/tvshows.txt";
     ifstream movies_in(fileName1, ios::in);
     ifstream shows_in(fileName2, ios::in);
     if (!movies_in || !shows_in) {
