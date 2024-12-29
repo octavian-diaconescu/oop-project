@@ -5,14 +5,36 @@
 #include "User.hpp"
 #include "Movie.hpp"
 #include "Storage.hpp"
+
+
 using namespace std;
 
 User::User(const int d) : data(d) {
 }
 
+
+// User::User(const User &other) {
+//     fullName = other.fullName;
+//     birthDate = other.birthDate;
+//     preferredLanguage = other.preferredLanguage;
+//     watchlist = other.watchlist;
+//     data = other.data;
+// }
+
 User &User::instance() {
     return uniqueInstance;
 }
+
+// User &User::operator=(const User &other) {
+//     if (this != &other) {
+//         fullName = other.fullName;
+//         birthDate = other.birthDate;
+//         preferredLanguage = other.preferredLanguage;
+//         watchlist = other.watchlist;
+//         data = other.data;
+//     }
+//     return *this;
+// }
 
 void User::printWatchlistContents() const {
     int id;
@@ -116,7 +138,7 @@ void User::addMovie(vector<Movie> &mvs) {
             if (answer == 'y' || answer == 'Y')
                 i.userRates();
             i.IsinWatchlist();
-            watchlist[id].addContent(make_shared<Movie>(i));
+            watchlist[id].addContent(shared_ptr<Content>(&i));
             ok = 1;
         }
     if (!ok)
@@ -165,7 +187,7 @@ void User::addTVShow(vector<TVShow> &tvs) {
             if (answer == 'y')
                 i.updateProgress();
             i.IsinWatchlist();
-            watchlist[id].addContent(make_shared<TVShow>(i));
+            watchlist[id].addContent(shared_ptr<Content>(&i));
             ok = 1;
         }
     }
