@@ -4,24 +4,8 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "Builder.hpp"
+#include "Abstract Factory.hpp"
 using namespace std;
-
-// Movie::Movie(const Movie & other)  : Content(other) {
-//     this->runtime = other.runtime;
-// }
-
-
-// Movie& Movie::operator=(const Movie& other)
-// {
-//     if (this != &other) {
-//         this->runtime = other.runtime;
-//     }
-//     return *this;
-// }
-
-// Movie::Movie() : Content(), runtime("empty") {
-// }
 
 Movie::Movie(const std::string &title, const std::string &ageRating, const float R) : Content(title, R, ageRating) {
 }
@@ -45,22 +29,14 @@ ostream& operator<<(ostream& out, const Movie& movie)
     return out;
 }
 
-// void Movie::addActor(Actor* actor)
-// {
-//     actors.push_back(actor);
-// }
-
-// Movie::~Movie()
-// {
-//     runtime.clear();
-// }
 
 void Movie::readFile(istream& mfin, std::vector<Movie>& movies)
 {
-    MovieBuilder builder;
-    Movie movie = builder.build();
-    while (mfin >> movie)
-        movies.push_back(movie);
+    const MovieFactory factory;
+    const auto content = factory.createContent();
+    auto* movie = dynamic_cast<Movie*>(content.get());
+    while (mfin >> *movie)
+        movies.push_back(*movie);
 }
 
 void Movie::printInfo() const

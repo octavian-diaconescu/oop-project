@@ -28,6 +28,10 @@ public:
 
     // void setName(const std::string&);
 
+    void deleteContent(const std::string& title);
+
+    void deleteWatchlist();
+
     [[nodiscard]] int getID() const;
 
     void printContents() const;

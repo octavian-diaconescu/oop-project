@@ -165,6 +165,10 @@ void User::addTVShow(vector<TVShow> &tvs) {
             cin >> answer;
             if (answer == 'y')
                 i.updateProgress();
+            cout << "Rate TVShow?: (y/n)";
+            cin >> answer;
+            if (answer == 'y' || answer == 'Y')
+                i.userRates();
             i.IsinWatchlist();
             watchlist[id].addContent(make_shared<TVShow>(i));
             ok = 1;
@@ -212,7 +216,7 @@ void User::markAsWatched() const {
             cin >> answer;
             if (answer == 'y' || answer == 'Y')
                 i->updateProgress();
-            cout << "Rate movie?: (y/n)";
+            cout << "Rate movie/tv show?: (y/n)";
             cin >> answer;
             if (answer == 'y' || answer == 'Y')
                 i->userRates();
@@ -280,6 +284,44 @@ int User::checkWatchlist() const {
     }
     return 0;
 }
+
+void User::deleteContentFromWatchlist() {
+    int id;
+    cout << "Available watchlists:\n";
+    for (const auto &wl: watchlist) {
+        cout << "ID: " << wl.getID() << " | Name: " << wl.getName() << '\n';
+    }
+    cout << "Enter the ID of the watchlist to modify: ";
+    cin >> id;
+    if (id < 0 || id > Watchlist::getCnt()) {
+        cout << "Invalid watchlist ID.\n";
+        return;
+    }
+    cout << "Enter the title of the content to delete: ";
+    string title;
+    cin.ignore();
+    getline(std::cin, title);
+    watchlist[id].deleteContent(title);
+}
+
+void User::deleteWatchlist() {
+    int id;
+    cout << "Available watchlists:\n";
+    for (const auto &wl: watchlist) {
+        cout << "ID: " << wl.getID() << " | Name: " << wl.getName() << '\n';
+    }
+    cout << "Enter the ID of the watchlist to delete: ";
+    cin >> id;
+
+    if (id < 0 || id > Watchlist::getCnt()) {
+        cout << "Invalid watchlist ID.\n";
+        return;
+    }
+
+    watchlist[id].deleteWatchlist();
+    watchlist.erase(watchlist.begin() + id);
+}
+
 
 istream &operator>>(istream &is, User &user) {
     is >> user.fullName >> user.birthDate >> user.preferredLanguage;

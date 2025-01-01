@@ -4,6 +4,7 @@ using namespace std;
 
 int main()
 {
-    Menu::run();
+    Menu &menu = Menu::instance();
+    menu.run();
     return 0;
 }

@@ -1,8 +1,8 @@
 #include <fstream>
 #include "TVShow.hpp"
+#include "Abstract Factory.hpp"
 #include <iostream>
 
-#include "Builder.hpp"
 using namespace std;
 
 
@@ -47,10 +47,11 @@ void TVShow::printEpisodes(const string &Title) const {
 }
 
 void TVShow::readFile(istream &sfin, std::vector<TVShow> &vector) {
-    TVShowBuilder builder;
-    TVShow tvshow = builder.build();
-    while (sfin >> tvshow)
-        vector.push_back(tvshow);
+    TVShowFactory factory;
+    const auto content = factory.createContent();
+    auto* tvshow = dynamic_cast<TVShow*>(content.get());
+    while (sfin >> *tvshow)
+        vector.push_back(*tvshow);
 }
 
 

@@ -53,13 +53,14 @@ void Menu::run() {
     // User::registerUser(user);
     string title;
     int choice = 1;
+    int innerChoice = 0;
     int x = 0;
     while (choice && x <= 100) {
         bool chk = false;
         cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
                 "4 to print the contents of a watchlist, 5 to show the episodes from a TV Show,\n"
-                "6 to update the status of a movie/tv show,\n"
-                "7 to list movies and shows from a watchlist sorted by category\n"
+                "6 to update the status of a movie/tv show, 7 to delete something from a watchlist / delete a watchlist\n"
+                "8 to list movies and shows from a watchlist sorted by category\n"
                 "0 to end the program" << endl;
         cin >> choice;
         switch (choice) {
@@ -108,6 +109,18 @@ void Menu::run() {
                 ++x;
                 break;
             case 7:
+                if (user.checkWatchlist())
+                    break;
+                cout <<
+                        "Do you want to delete content(1) from a watchlist or an entire watchlist(2)?. Enter the corresponding number: ";
+                cin >> innerChoice;
+                if (innerChoice == 1)
+                    user.deleteContentFromWatchlist();
+                else if (innerChoice == 2)
+                    user.deleteWatchlist();
+                else cout << "Miss input. Try again!" << endl;
+                break;
+            case 8:
                 if (user.checkWatchlist())
                     break;
                 user.listSorted();

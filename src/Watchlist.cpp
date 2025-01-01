@@ -45,17 +45,17 @@ void Watchlist::printContents() const {
       movie->printInfo();
     }
   cout << "TV Shows in watchlist: " << endl;
-  for (const auto& content: contents)
+  for (const auto &content: contents)
     if (const auto *tvs = dynamic_cast<TVShow *>(content.get())) {
       tvs->printInfo();
     }
 }
 
-const vector<shared_ptr<Content> >& Watchlist::getContents() const {
+const vector<shared_ptr<Content> > &Watchlist::getContents() const {
   return contents;
 }
 
-const string& Watchlist::getName() const {
+const string &Watchlist::getName() const {
   return name;
 }
 
@@ -64,9 +64,23 @@ const string& Watchlist::getName() const {
 //  contents.clear();
 //  name.clear();
 //}
+void Watchlist::deleteContent(const std::string &title) {
+  for (auto it = contents.begin(); it != contents.end(); ++it) {
+    if ((*it)->getTitle() == title) {
+      contents.erase(it);
+      std::cout << "Content '" << title << "' has been removed from the watchlist.\n";
+      return;
+    }
+  }
+  std::cout << "Content '" << title << "' not found in the watchlist.\n";
+}
 
+void Watchlist::deleteWatchlist() {
+  contents.clear();
+  cout << "Watchlist with id: " << id << " has been deleted" <<  endl;
+}
 
 std::ostream &operator<<(std::ostream &os, const Watchlist &watchlist) {
   os << watchlist.id << " " << watchlist.name << endl;
-  return  os;
+  return os;
 }

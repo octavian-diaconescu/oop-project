@@ -52,7 +52,6 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         main.cpp
         generated/src/Helper.cpp
         src/Menu.cpp
-        src/Builder.cpp
         src/Category.cpp
         src/Content.cpp
         src/Episode.cpp

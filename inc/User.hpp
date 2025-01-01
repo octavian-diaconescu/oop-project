@@ -44,5 +44,9 @@ public:
 
   [[nodiscard]] int checkWatchlist() const;
 
+  void deleteContentFromWatchlist();
+
+  void deleteWatchlist();
+
   ~User() = default;
 };
