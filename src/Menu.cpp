@@ -17,8 +17,8 @@ Menu::Menu(const Menu &other) {
 Menu &Menu::instance() { return uniqueInstance; }
 
 void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
-    ifstream movies_in("../input_files/movies.txt", ios::in);
-    ifstream shows_in("../input_files/tvshows.txt", ios::in);
+    ifstream movies_in("../input_files/movies.txt");
+    ifstream shows_in("../input_files/tvshows.txt");
     if (!movies_in || !shows_in) {
         std::cerr << "Error opening files (in function populateDB)" << std::endl;
         return;
