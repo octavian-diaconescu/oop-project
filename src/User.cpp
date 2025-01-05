@@ -26,7 +26,7 @@ void User::printWatchlistContents() const {
 }
 
 void User::registerUser(User &other) {
-    const string filename = "../input_files/users.txt";
+    const string filename = "input_files/users.txt";
     Storage<User> userStorage;
     if (userStorage.loadFromFile_User(filename, other)) {
         cout << "Please enter your full name: ";
@@ -39,7 +39,7 @@ void User::registerUser(User &other) {
         cin >> other.username;
         userStorage.saveToFile_Users(filename, other);
     } else {
-        const string watchlist_filename = "../input_files/watchlists.txt";
+        const string watchlist_filename = "input_files/watchlists.txt";
         Storage<Watchlist> watchStorage;
         cout << "Welcome, " << other.getUsername() << "!" << endl;
         watchStorage.loadFromFile(watchlist_filename);
@@ -48,7 +48,7 @@ void User::registerUser(User &other) {
 }
 
 void User::reregisterUser(User &other) {
-    const string filename = "./input_files/users.txt";
+    const string filename = "input_files/users.txt";
     cout << "!WARNING! All users and associated watchlists will be lost. Do you want to proceed?(y/n): ";
     char choice = 'n';
     cin >> choice;
@@ -65,7 +65,7 @@ void User::reregisterUser(User &other) {
         cin >> other.username;
         userStorage.saveToFile_Users(filename, other);
     }
-    ofstream emptyFile("../input_files/watchlists.txt", ios::trunc);
+    ofstream emptyFile("input_files/watchlists.txt", ios::trunc);
     other.watchlist.clear();
 }
 
@@ -341,7 +341,7 @@ void User::deleteWatchlist() {
 
 void User::saveWatchlists() const {
     Storage<Watchlist> watchStorage;
-    const string filename = "./input_files/watchlists.txt";
+    const string filename = "input_files/watchlists.txt";
     for (const auto& i: watchlist) {
         watchStorage.addItem(i);
     }
