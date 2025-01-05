@@ -14,7 +14,7 @@
    - The C++ code does not provide a real connection with a database. Instead, I have opted for simulating a database for the movies and series with txt files.  
    - The program was built with a sole user in mind; that is, only one user can exist at a time. Registering a user will also save the watchlists and its contents for future use. After registration, the program will load the files from storage for proper functionality.  
        - Interaction through CLI as a proper front end is not implemented. 
-   
+   ___
 
 # Nu primesc notă pentru că nu am pus titlu și descriere
 
