@@ -18,6 +18,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include(cmake/Options.cmake)
 include_directories(inc)
 include_directories(src)
+include_directories(input_files)
 
 ###############################################################################
 
