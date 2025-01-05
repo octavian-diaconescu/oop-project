@@ -21,7 +21,7 @@ public:
         return items;
     }
 
-    void saveToFile_Users(const string &filename, User &user) const {
+    void saveToFile_Users(const string &filename, const User &user) const {
         ofstream outFile(filename, ios::binary | ios::out);
         if (!outFile) {
             throw runtime_error("Could not open file for writing: " + filename);

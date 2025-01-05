@@ -7,7 +7,7 @@ class Category {
 public:
     Category();
 
-    Category(std::string );
+    explicit Category(std::string);
 
     friend std::istream &operator>>(std::istream &, Category &);
 

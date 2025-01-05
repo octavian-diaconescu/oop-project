@@ -96,8 +96,8 @@ Watchlist &Watchlist::operator>>=(istream &is) {
         prog = false;
       else if (progress == "want to watch")
         prog = true;
-
-      auto movie = make_shared<Movie>(title, ageRating, rating, runtime, category, userRating, prog);
+      Category cat(category);
+      auto movie = make_shared<Movie>(title, ageRating, rating, runtime, cat, userRating, prog);
       contents.push_back(movie);
     } else if (section == "tvshows") {
       getline(lineStream, category, '|');
@@ -112,8 +112,8 @@ Watchlist &Watchlist::operator>>=(istream &is) {
         prog = false;
       else if (progress == "want to watch")
         prog = true;
-
-      auto tvShow = make_shared<TVShow>(title, ageRating, rating, category, userRating, prog);
+      Category cat(category);
+      auto tvShow = make_shared<TVShow>(title, ageRating, rating, cat, userRating, prog);
       contents.push_back(tvShow);
     }
   }
