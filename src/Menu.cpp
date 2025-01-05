@@ -2,8 +2,10 @@
 #include "User.hpp"
 #include "TVShow.hpp"
 #include "Movie.hpp"
+#include "Storage.hpp"
 #include <iostream>
 #include <fstream>
+
 using namespace std;
 
 Menu Menu::uniqueInstance(0);
@@ -50,7 +52,7 @@ void Menu::run() {
     vector<TVShow> tvShow;
     populateDB(movies, tvShow);
     User &user = User::instance();
-    // User::registerUser(user);
+    User::registerUser(user);
     string title;
     int choice = 1;
     int innerChoice = 0;
@@ -60,11 +62,13 @@ void Menu::run() {
         cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
                 "4 to print the contents of a watchlist, 5 to show the episodes from a TV Show,\n"
                 "6 to update the status of a movie/tv show, 7 to delete something from a watchlist / delete a watchlist\n"
-                "8 to list movies and shows from a watchlist sorted by category\n"
+                "8 to list movies and shows from a watchlist sorted by category, 9 to register a new user.\n"
                 "0 to end the program" << endl;
         cin >> choice;
         switch (choice) {
             case 0:
+                cout << "Saving watchlists..." << endl;
+                user.saveWatchlists();
                 cout << "Exiting..." << endl;
                 choice = 0;
                 break;
@@ -118,7 +122,7 @@ void Menu::run() {
                     user.deleteContentFromWatchlist();
                 else if (innerChoice == 2)
                     user.deleteWatchlist();
-                else cout << "Miss input. Try again!" << endl;
+                else cout << "Misinput. Try again!" << endl;
                 break;
             case 8:
                 if (user.checkWatchlist())
@@ -126,6 +130,9 @@ void Menu::run() {
                 user.listSorted();
                 ++x;
                 break;
+            case 9:
+                User::reregisterUser(user);
+            break;
             default:
                 ++x;
                 cout << "Invalid choice." << endl;

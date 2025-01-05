@@ -2,12 +2,12 @@
 #include <string>
 
 class Category {
-    std::string name = "empty";
+    std::string name;
 
 public:
     Category();
 
-    explicit Category(const std::string &);
+    Category(std::string );
 
     friend std::istream &operator>>(std::istream &, Category &);
 

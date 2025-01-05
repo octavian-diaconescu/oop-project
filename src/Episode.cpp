@@ -2,20 +2,6 @@
 #include <iostream>
 #include <utility>
 using namespace std;
-// Episode::Episode() : Content(){}
-//
-// Episode::Episode(const std::string &name, std::string  eps, string  rt,  const float R) : Content(name, R, " "), epS(std::move(eps)), runtime(std::move(rt)) {}
-
-// Episode & Episode::operator+(const Episode & other) {
-//     epS = other.epS;
-//     title = other.title;
-//     rating = other.rating;
-//     runtime = other.runtime;
-//     return *this;
-// }
-
-// Episode::Episode(): Content(), epS("empty"), runtime("empty") {
-// }
 
 Episode::Episode(const Episode &other) : Content(other), epS(other.epS), runtime(other.runtime) {
 }
@@ -30,10 +16,6 @@ Episode &Episode::operator=(const Episode &other) {
 
 void Episode::printInfo() const {
     cout << epS <<  " " << title << " " << rating << " " << runtime << endl;
-}
-
-string Episode::getTitle() const {
-    return title;
 }
 
 std::istream & operator>>(std::istream &in, Episode &ep) {

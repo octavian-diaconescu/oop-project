@@ -6,23 +6,25 @@
 class Content {
 protected:
     std::string title;
-    float rating = 0.0; //out of 10
+    std::string rating = "empty"; //out of 10
     std::string ageRating = "empty"; //rated R, PG, etc.;
     bool progress = true; //0 for watched, 1 for want to watch
     bool inWatchlist = false;
     std::string userRating = "empty";
-    Category category = Category();
+    Category category;
 
 public:
     Content() = default;
 
-    Content(std::string, float, std::string);
+    Content(std::string, const std::string&, std::string);
+
+    Content(std::string , const std::string&, std::string , bool, std::string , const Category&);
 
     Content(const Content &) = default;
 
     Content &operator=(const Content &) = default;
 
-    [[nodiscard]] virtual std::string getTitle() const = 0;
+    [[nodiscard]] const std::string& getTitle() const;
 
     [[nodiscard]] const Category &getCategory() const;
 

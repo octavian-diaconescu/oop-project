@@ -18,8 +18,6 @@ public:
 
     void printInfo() const override;
 
-    [[nodiscard]] std::string getTitle() const override;
-
     friend std::istream &operator>>(std::istream &, Episode &);
 
     friend std::ostream &operator<<(std::ostream &, const Episode &);

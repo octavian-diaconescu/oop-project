@@ -1,10 +1,10 @@
-#include <iostream>
-#include <fstream>
-#include <algorithm>
 #include "Watchlist.hpp"
 #include "User.hpp"
 #include "Movie.hpp"
 #include "Storage.hpp"
+#include <iostream>
+#include <fstream>
+#include <algorithm>
 
 
 using namespace std;
@@ -25,21 +25,49 @@ void User::printWatchlistContents() const {
     watchlist[id].printContents();
 }
 
-// void User::registerUser(User &other) {
-//     cout << "Please enter your full name: ";
-//     getline(cin, other.fullName);
-//     cout << "Please enter your birth date:(yyyy.mm.dd) ";
-//     cin >> other.birthDate;
-//     cout << "Please enter your preferred language:(EN, FR, RO, etc.) ";
-//     cin >> other.preferredLanguage;
-//     cout << "Please choose a username:(must not include spaces) ";
-//     cin >> other.username;
-//     ofstream userFile("users.out");
-//     Storage<User> storeUsers;
-//     storeUsers.addItem(other);
-//     storeUsers.printItems(userFile);
-//     userFile.close();
-// }
+void User::registerUser(User &other) {
+    const string filename = "../input_files/users.dat";
+    Storage<User> userStorage;
+    if (userStorage.loadFromFile_User(filename, other)) {
+        cout << "Please enter your full name: ";
+        getline(cin, other.fullName);
+        cout << "Please enter your birth date:(yyyy.mm.dd) ";
+        cin >> other.birthDate;
+        cout << "Please enter your preferred language:(EN, FR, RO, etc.) ";
+        cin >> other.preferredLanguage;
+        cout << "Please choose a username:(must not include spaces) ";
+        cin >> other.username;
+        userStorage.saveToFile_Users(filename, other);
+    } else {
+        const string watchlist_filename = "../input_files/watchlists.dat";
+        Storage<Watchlist> watchStorage;
+        cout << "Welcome, " << other.getUsername() << "!" << endl;
+        watchStorage.loadFromFile(watchlist_filename);
+        other.watchlist = watchStorage.getItems();
+    }
+}
+
+void User::reregisterUser(User &other) {
+    const string filename = "../input_files/users.dat";
+    cout << "!WARNING! All users and associated watchlists will be lost. Do you want to proceed?(y/n): ";
+    char choice = 'n';
+    cin >> choice;
+    if (choice == 'y' || choice == 'Y') {
+        Storage<User> userStorage;
+        cin.ignore();
+        cout << "Please enter your full name: ";
+        getline(cin, other.fullName);
+        cout << "Please enter your birth date:(yyyy.mm.dd) ";
+        cin >> other.birthDate;
+        cout << "Please enter your preferred language:(EN, FR, RO, etc.) ";
+        cin >> other.preferredLanguage;
+        cout << "Please choose a username:(must not include spaces) ";
+        cin >> other.username;
+        userStorage.saveToFile_Users(filename, other);
+    }
+    ofstream emptyFile("watchlists.dat", ios::trunc);
+    other.watchlist.clear();
+}
 
 void User::createWatchlist() {
     cout << "Do you want to name your watchlist? (y/n): ";
@@ -71,12 +99,10 @@ void User::createWatchlist() {
             cout << "Please enter a valid option!" << endl;
             break;
     }
-    Storage<Watchlist> storeWatchlists;
-    ofstream watchlistFile("watchlists.out");
-    for (const auto &i: watchlist)
-        storeWatchlists.addItem(i);
-    storeWatchlists.printItems(watchlistFile);
-    watchlistFile.close();
+}
+
+const std::string &User::getUsername() const {
+    return username;
 }
 
 
@@ -256,25 +282,16 @@ void User::listSorted() const {
     sort(contents.begin(), contents.end(), [](const shared_ptr<Content> &i, const shared_ptr<Content> &j) {
         return i->getCategory() < j->getCategory();
     });
-    Storage<Movie> storeMovie;
-    Storage<TVShow> storeTVShow;
     cout << "Movies in watchlist: " << endl;
-    for (const auto &content: contents)
-        if (const auto *movie = dynamic_cast<Movie *>(content.get())) {
+    for (const auto &i: contents)
+        if (const auto* movie = dynamic_cast<Movie*>(i.get()))
             movie->printInfo();
-            storeMovie.addItem(*movie);
-        }
     cout << "TV Shows in watchlist: " << endl;
     for (const auto &content: contents)
         if (const auto *tvs = dynamic_cast<TVShow *>(content.get())) {
             tvs->printInfo();
-            storeTVShow.addItem(*tvs);
         }
     cout << endl;
-    ofstream watchlistFile("watchlists.out", ios::app);
-    storeMovie.printItems(watchlistFile);
-    storeTVShow.printItems(watchlistFile);
-    watchlistFile.close();
 }
 
 int User::checkWatchlist() const {
@@ -322,14 +339,25 @@ void User::deleteWatchlist() {
     watchlist.erase(watchlist.begin() + id);
 }
 
+void User::saveWatchlists() const {
+    Storage<Watchlist> watchStorage;
+    const string filename = "../input_files/watchlists.dat";
+    for (const auto& i: watchlist) {
+        watchStorage.addItem(i);
+    }
+    watchStorage.saveToFile(filename);
+}
+
 
 istream &operator>>(istream &is, User &user) {
-    is >> user.fullName >> user.birthDate >> user.preferredLanguage;
+    getline(is, user.fullName);
+    is >> user.birthDate >> user.preferredLanguage >> user.username;
     return is;
 }
 
 ostream &operator<<(ostream &os, const User &user) {
-    os << user.fullName << " " << user.birthDate << " " << user.preferredLanguage << " " << user.username << endl;
+    os << user.fullName << endl;
+    os << user.birthDate << " " << user.preferredLanguage << " " << user.username << endl;
     return os;
 }
 

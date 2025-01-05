@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-
 #include "Movie.hpp"
 #include "TVShow.hpp"
 #include "Watchlist.hpp"
@@ -30,9 +29,15 @@ public:
 
   void printWatchlistContents() const;
 
-  //static void registerUser(User&);
+  static void registerUser(User &);
+
+  static void reregisterUser(User &);
+
+  void saveWatchlists() const;
 
   void createWatchlist();
+
+  [[nodiscard]] const std::string &getUsername() const;
 
   void addMovie(std::vector<Movie> &);
 

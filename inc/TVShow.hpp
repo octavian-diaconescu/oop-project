@@ -8,9 +8,9 @@
 class TVShow : public Content {
     std::vector<Episode> episodes;
 public:
-    friend class TVShowBuilder;
-
     TVShow() = default;
+
+    TVShow(const std::string&, const std::string&, const std::string&, const Category&,  const std::string&, bool );
 
     TVShow(const TVShow &) = default;
 
@@ -22,13 +22,11 @@ public:
 
     void printInfo() const override;
 
-   // std::vector<Episode> *getEpisodes();
-
-    [[nodiscard]] std::string getTitle() const override;
-
     void populateEpisodes(std::istream &);
 
     void printEpisodes(const std::string&) const ;
+
+    void saveInfo(std::ostream&) const;
 
     ~TVShow() override = default;
 

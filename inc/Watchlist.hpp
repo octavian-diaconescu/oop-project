@@ -22,13 +22,13 @@ public:
 
     Watchlist &operator+(const std::string &);
 
-    // const std::vector<std::shared_ptr<Content>>& contentsReference() const;
+    Watchlist &operator<<=( std::ostream &) const;
+
+    Watchlist &operator>>=( std::istream &);
 
     static int getCnt() ;
 
-    // void setName(const std::string&);
-
-    void deleteContent(const std::string& title);
+    void deleteContent(const std::string &title);
 
     void deleteWatchlist();
 

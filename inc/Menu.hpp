@@ -1,6 +1,7 @@
 #pragma once
 #include "TVShow.hpp"
 #include "Movie.hpp"
+#include "User.hpp"
 
 class Menu {
     int data;
@@ -13,6 +14,8 @@ class Menu {
     Menu(const Menu &);
 
     Menu &operator=(const Menu &) = default;
+
+    std::vector<User> users;
 
 public:
     static Menu &instance();
