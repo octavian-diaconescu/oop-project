@@ -10,11 +10,11 @@ istream &operator>>(istream &in, TVShow &tvshow) {
     in >> tvshow.title >> tvshow.rating >> tvshow.ageRating >> tvshow.category;
     return in;
 }
-
-ostream &operator<<(ostream &out, const TVShow &obj) {
-    out << obj.title << "| " << obj.rating << "| " << obj.ageRating << "| " << obj.category;
-    return out;
-}
+//
+// ostream &operator<<(ostream &out, const TVShow &obj) {
+//     out << obj.title << "| " << obj.rating << "| " << obj.ageRating << "| " << obj.category;
+//     return out;
+// }
 
 TVShow::TVShow(const std::string &Title, const std::string &ageR, const std::string& R, const Category & cat, const std::string & userR, const bool prog) : Content(Title, R, ageR, prog, userR, cat) {
 }
@@ -40,7 +40,7 @@ void TVShow::populateEpisodes(istream &in) {
 void TVShow::printEpisodes(const string &Title) const {
     if (title == Title) {
         for (const auto &episode: episodes)
-            cout << episode;
+            episode.printInfo();
     }
     cout << endl;
 }

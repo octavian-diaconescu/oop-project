@@ -165,8 +165,8 @@ void Watchlist::deleteWatchlist() {
   contents.clear();
   cout << "Watchlist with id: " << id << " has been deleted" << endl;
 }
-
-ostream &operator<<(ostream &os, const Watchlist &watchlist) {
-  os << watchlist.id << " " << watchlist.name << endl;
-  return os;
-}
+//
+// ostream &operator<<(ostream &os, const Watchlist &watchlist) {
+//   os << watchlist.id << " " << watchlist.name << endl;
+//   return os;
+// }

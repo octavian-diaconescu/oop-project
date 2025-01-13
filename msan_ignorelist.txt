@@ -1,3 +1,0 @@
-src/Menu.cpp
-src/Movie.cpp
-src/TVShow.cpp

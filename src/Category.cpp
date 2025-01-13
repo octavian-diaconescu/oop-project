@@ -7,7 +7,6 @@ Category::Category() : name("empty") {}
 
 Category::Category(std::string  Name): name(std::move(Name)){}
 
-
 istream& operator>>(istream& in, Category& cat) {
   in >> cat.name;
   return in;

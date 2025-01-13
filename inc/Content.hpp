@@ -6,23 +6,23 @@
 class Content {
 protected:
     std::string title;
-    std::string rating = "empty"; //out of 10
-    std::string ageRating = "empty"; //rated R, PG, etc.;
-    bool progress = true; //0 for watched, 1 for want to watch
-    bool inWatchlist = false;
-    std::string userRating = "empty";
+    std::string rating; //out of 10
+    std::string ageRating; //rated R, PG, etc.;
+    bool progress; //0 for watched, 1 for want to watch
+    bool inWatchlist;
+    std::string userRating;
     Category category;
 
 public:
-    Content() = default;
+    Content() : title("empty"), rating("emtpy"), ageRating("empty"), progress(true), inWatchlist(false), userRating("empty") {};
 
-    Content(std::string, const std::string&, std::string);
+    // Content(std::string, const std::string&, std::string);
 
-    Content(std::string , const std::string&, std::string , bool, std::string , const Category&);
+    explicit Content(std::string , const std::string&, std::string , bool, std::string , const Category&);
 
-    Content(const Content &) = default;
+    // Content(const Content &) = default;
 
-    Content &operator=(const Content &) = default;
+    // Content &operator=(const Content &) = default;
 
     [[nodiscard]] const std::string& getTitle() const;
 
@@ -37,6 +37,8 @@ public:
     [[nodiscard]] bool getWatchlistStatus() const;
 
     virtual void printInfo() const = 0;
+
+    virtual void saveInfo(std::ostream&) const;
 
     virtual ~Content() = default;
 };

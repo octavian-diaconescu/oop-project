@@ -8,8 +8,8 @@
 
 using namespace std;
 
-Movie::Movie(const std::string &title, const std::string &ageRating, const std::string& R) : Content(title, R, ageRating) {
-}
+// Movie::Movie(const std::string &title, const std::string &ageRating, const std::string& R) : Content(title, R, ageRating) {
+// }
 
 Movie::Movie(const std::string & Title, const std::string & ageR, const std::string& R, std::string  rt, const Category & cat,
     const std::string & userR, const bool prog) : Content(Title, R, ageR, prog, userR, cat), runtime(std::move(rt)) {
@@ -22,11 +22,11 @@ istream& operator>>(istream& in, Movie& movie)
 }
 
 
-ostream& operator<<(ostream& out, const Movie& movie)
-{
-    out << "Title: " << movie.title << '|' << "Age Rating: " << movie.ageRating << '|' << "Rating: " << movie.rating << '|' << "Total runtime: " << movie.runtime << "|" << "Category: " << movie.category;
-    return out;
-}
+// ostream& operator<<(ostream& out, const Movie& movie)
+// {
+//     out << "Title: " << movie.title << '|' << "Age Rating: " << movie.ageRating << '|' << "Rating: " << movie.rating << '|' << "Total runtime: " << movie.runtime << "|" << "Category: " << movie.category;
+//     return out;
+// }
 
 
 void Movie::readFile(istream& mfin, std::vector<Movie>& movies)

@@ -12,11 +12,11 @@ class Watchlist {
 public:
     Watchlist();
 
-    friend std::ostream &operator<<(std::ostream &os, const Watchlist &watchlist);
+    // friend std::ostream &operator<<(std::ostream &os, const Watchlist &watchlist);
 
-    Watchlist &operator=(const Watchlist &watchlist) = default;
+    // Watchlist &operator=(const Watchlist &watchlist) = default;
 
-    Watchlist(const Watchlist &watchlist) = default;
+    // Watchlist(const Watchlist &watchlist) = default;
 
     void addContent(const std::shared_ptr<Content>&);
 
@@ -40,6 +40,6 @@ public:
 
     [[nodiscard]] const std::string& getName() const;
 
-    ~Watchlist() = default;
+    // ~Watchlist() = default;
 
 };

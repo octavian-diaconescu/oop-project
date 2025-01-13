@@ -15,7 +15,7 @@ class Menu {
 
     Menu &operator=(const Menu &) = default;
 
-    std::vector<User> users;
+    // std::vector<User> users;
 
 public:
     static Menu &instance();

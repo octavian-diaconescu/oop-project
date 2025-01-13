@@ -59,11 +59,21 @@ void Menu::run() {
     int x = 0;
     while (choice && x <= 100) {
         bool chk = false;
-        cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
-                "4 to print the contents of a watchlist, 5 to show the episodes from a TV Show,\n"
-                "6 to update the status of a movie/tv show, 7 to delete something from a watchlist / delete a watchlist\n"
-                "8 to list movies and shows from a watchlist sorted by category, 9 to register a new user.\n"
-                "0 to end the program" << endl;
+        cout << "1. Create a watchlist" << endl;
+        cout << "2. Add a movie to a watchlist" << endl;
+        cout << "3. Add a tv show to a watchlist" << endl;
+        cout << "4. Print contents of a watchlist" << endl;
+        cout << "5. Print the episodes from a TV Show" << endl;
+        cout << "6. Update the status of a movie/tv show" << endl;
+        cout << "7. Delete something from a watchlist / Delete a watchlist" << endl;
+        cout << "8. List movies and shows from a watchlist sorted by category" << endl;
+        cout << "9. Register a new user" << endl;
+        cout << "0. Exit" << endl << endl;
+        // cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
+        //         "4 to print the contents of a watchlist, 5 to 5 to show the episodes from a TV Show,\n"
+        //         "6 to update the status of a movie/tv show, 7 to delete something from a watchlist / delete a watchlist\n"
+        //         "8 to list movies and shows from a watchlist sorted by category, 9 to register a new user.\n"
+        //         "0 to end the program" << endl;
         cin >> choice;
         switch (choice) {
             case 0:
