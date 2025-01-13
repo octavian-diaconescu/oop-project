@@ -39,9 +39,8 @@ void User::registerUser(User &other) {
         cout << "Please choose a username:(must not include spaces) ";
         cin >> other.username;
         try {
-           userStorage.saveToFile_Users(filename, other);
-        }
-        catch (const FilePathError &e) {
+            userStorage.saveToFile_Users(filename, other);
+        } catch (const FilePathError &e) {
             cerr << e.what() << endl;
         }
     } else {
@@ -50,8 +49,7 @@ void User::registerUser(User &other) {
         cout << "Welcome, " << other.getUsername() << "!" << endl;
         try {
             watchStorage.loadFromFile(watchlist_filename);
-        }
-        catch (const FilePathError &e) {
+        } catch (const FilePathError &e) {
             cerr << e.what() << endl;
         }
         other.watchlist = watchStorage.getItems();
@@ -76,8 +74,7 @@ void User::reregisterUser(User &other) {
         cin >> other.username;
         try {
             userStorage.saveToFile_Users(filename, other);
-        }
-        catch (const FilePathError &e) {
+        } catch (const FilePathError &e) {
             cerr << e.what() << endl;
         }
     }

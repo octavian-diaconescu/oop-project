@@ -52,8 +52,7 @@ void Menu::run() {
     vector<TVShow> tvShow;
     try {
         populateDB(movies, tvShow);
-    }
-    catch (const FilePathError &e) {
+    } catch (const FilePathError &e) {
         cerr << e.what() << endl;
     }
     User &user = User::instance();
