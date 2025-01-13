@@ -14,7 +14,8 @@ protected:
     Category category;
 
 public:
-    Content() : title("empty"), rating("emtpy"), ageRating("empty"), progress(true), userRating("empty") {};
+    Content() : title("empty"), rating("emtpy"), ageRating("empty"), progress(true), userRating("empty") {
+    };
 
     // Content(std::string, const std::string&, std::string);
 
