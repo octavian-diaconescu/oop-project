@@ -9,12 +9,12 @@ protected:
     std::string rating; //out of 10
     std::string ageRating; //rated R, PG, etc.;
     bool progress; //0 for watched, 1 for want to watch
-    bool inWatchlist;
+    bool inWatchlist{};
     std::string userRating;
     Category category;
 
 public:
-    Content() : title("empty"), rating("emtpy"), ageRating("empty"), progress(true), inWatchlist(false), userRating("empty") {};
+    Content() : title("empty"), rating("emtpy"), ageRating("empty"), progress(true), userRating("empty") {};
 
     // Content(std::string, const std::string&, std::string);
 
