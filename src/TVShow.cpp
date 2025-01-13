@@ -1,5 +1,8 @@
 #include <fstream>
 #include "TVShow.hpp"
+
+#include <Exceptions.hpp>
+
 #include "Factory.hpp"
 #include <iostream>
 
@@ -10,11 +13,6 @@ istream &operator>>(istream &in, TVShow &tvshow) {
     in >> tvshow.title >> tvshow.rating >> tvshow.ageRating >> tvshow.category;
     return in;
 }
-//
-// ostream &operator<<(ostream &out, const TVShow &obj) {
-//     out << obj.title << "| " << obj.rating << "| " << obj.ageRating << "| " << obj.category;
-//     return out;
-// }
 
 TVShow::TVShow(const std::string &Title, const std::string &ageR, const std::string& R, const Category & cat, const std::string & userR, const bool prog) : Content(Title, R, ageR, prog, userR, cat) {
 }
@@ -31,9 +29,13 @@ void TVShow::printInfo() const {
 void TVShow::populateEpisodes(istream &in) {
     const ShortContent factory;
     const auto content = factory.createShortContent();
-    auto *eps = dynamic_cast<Episode*>(content.get());
-    while (in >> *eps) {
-        this->episodes.push_back(*eps);
+    try {
+        auto *eps = dynamic_cast<Episode*>(content.get());
+    while (in >> *eps)
+        episodes.push_back(*eps);
+    }
+    catch (const UpcastError &e) {
+        cerr << e.what() << endl;
     }
 }
 
@@ -57,9 +59,15 @@ void TVShow::saveInfo(ostream & os) const {
 void TVShow::readFile(istream &sfin, vector<TVShow> &vector) {
     const LongContent factory;
     const auto content = factory.createLongContent();
-    auto *tvshow = dynamic_cast<TVShow *>(content.get());
-    while (sfin >> *tvshow)
+    try {
+        auto *tvshow = dynamic_cast<TVShow *>(content.get());
+        while (sfin >> *tvshow)
         vector.push_back(*tvshow);
+    }
+    catch (const UpcastError &e) {
+        cerr << e.what() << endl;
+    }
+
 }
 
 

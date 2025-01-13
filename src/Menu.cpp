@@ -3,6 +3,7 @@
 #include "TVShow.hpp"
 #include "Movie.hpp"
 #include "Storage.hpp"
+#include "Exceptions.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -20,16 +21,15 @@ void Menu::populateDB(vector<Movie> &movies, vector<TVShow> &tv_shows) {
     ifstream movies_in("input_files/movies.txt");
     ifstream shows_in("input_files/tvshows.txt");
     if (!movies_in || !shows_in) {
-        std::cerr << "Error opening files (in function populateDB)" << std::endl;
-        return;
+        throw FilePathError("input_files/movies.txt or input_files/tvshows.txt");
     }
+
+    Movie::readFile(movies_in, movies);
+    TVShow::readFile(shows_in, tv_shows);
     const vector<string> names = {
         "Black_Mirror", "Breaking_Bad", "Friends", "Game_of_Thrones", "Sherlock", "Stranger_Things", "The_Crown",
         "The_Office", "The_Sopranos", "The_Wire"
     };
-
-    Movie::readFile(movies_in, movies);
-    TVShow::readFile(shows_in, tv_shows);
 
     size_t j = 0;
     for (auto &i: tv_shows) {
@@ -50,7 +50,12 @@ void Menu::run() {
     cout << "Populating database, please wait..." << endl << endl;
     vector<Movie> movies;
     vector<TVShow> tvShow;
-    populateDB(movies, tvShow);
+    try {
+        populateDB(movies, tvShow);
+    }
+    catch (const FilePathError &e) {
+        cerr << e.what() << endl;
+    }
     User &user = User::instance();
     User::registerUser(user);
     string title;
@@ -69,11 +74,6 @@ void Menu::run() {
         cout << "8. List movies and shows from a watchlist sorted by category" << endl;
         cout << "9. Register a new user" << endl;
         cout << "0. Exit" << endl << endl;
-        // cout << "Enter 1 to create a watchlist, 2 to add a movie to a watchlist, 3 to add a TV Show to a watchlist,\n"
-        //         "4 to print the contents of a watchlist, 5 to 5 to show the episodes from a TV Show,\n"
-        //         "6 to update the status of a movie/tv show, 7 to delete something from a watchlist / delete a watchlist\n"
-        //         "8 to list movies and shows from a watchlist sorted by category, 9 to register a new user.\n"
-        //         "0 to end the program" << endl;
         cin >> choice;
         switch (choice) {
             case 0:
@@ -142,7 +142,7 @@ void Menu::run() {
                 break;
             case 9:
                 User::reregisterUser(user);
-            break;
+                break;
             default:
                 ++x;
                 cout << "Invalid choice." << endl;

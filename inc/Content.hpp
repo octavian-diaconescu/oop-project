@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-
 #include "Category.hpp"
 
 class Content {
@@ -15,15 +14,9 @@ protected:
 
 public:
     Content() : title("empty"), rating("emtpy"), ageRating("empty"), progress(true), userRating("empty") {
-    };
-
-    // Content(std::string, const std::string&, std::string);
+    }
 
     explicit Content(std::string , const std::string&, std::string , bool, std::string , const Category&);
-
-    // Content(const Content &) = default;
-
-    // Content &operator=(const Content &) = default;
 
     [[nodiscard]] const std::string& getTitle() const;
 

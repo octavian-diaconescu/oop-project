@@ -52,6 +52,4 @@ public:
   void deleteContentFromWatchlist();
 
   void deleteWatchlist();
-
-  // ~User() = default;
 };

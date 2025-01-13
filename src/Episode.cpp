@@ -23,7 +23,3 @@ std::istream & operator>>(std::istream &in, Episode &ep) {
     return in;
 }
 
-// std::ostream & operator<<(std::ostream &out, const Episode & other) {
-//     out << other.epS << " " << other.title << " " << other.rating << " " << other.runtime << endl;
-//     return out;
-// }

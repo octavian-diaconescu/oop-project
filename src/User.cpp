@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <Exceptions.hpp>
 
 
 using namespace std;
@@ -37,12 +38,22 @@ void User::registerUser(User &other) {
         cin >> other.preferredLanguage;
         cout << "Please choose a username:(must not include spaces) ";
         cin >> other.username;
-        userStorage.saveToFile_Users(filename, other);
+        try {
+           userStorage.saveToFile_Users(filename, other);
+        }
+        catch (const FilePathError &e) {
+            cerr << e.what() << endl;
+        }
     } else {
         const string watchlist_filename = "input_files/watchlists.txt";
         Storage<Watchlist> watchStorage;
         cout << "Welcome, " << other.getUsername() << "!" << endl;
-        watchStorage.loadFromFile(watchlist_filename);
+        try {
+            watchStorage.loadFromFile(watchlist_filename);
+        }
+        catch (const FilePathError &e) {
+            cerr << e.what() << endl;
+        }
         other.watchlist = watchStorage.getItems();
     }
 }
@@ -63,7 +74,12 @@ void User::reregisterUser(User &other) {
         cin >> other.preferredLanguage;
         cout << "Please choose a username:(must not include spaces) ";
         cin >> other.username;
-        userStorage.saveToFile_Users(filename, other);
+        try {
+            userStorage.saveToFile_Users(filename, other);
+        }
+        catch (const FilePathError &e) {
+            cerr << e.what() << endl;
+        }
     }
     ofstream emptyFile("input_files/watchlists.txt", ios::trunc);
     other.watchlist.clear();

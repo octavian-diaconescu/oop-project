@@ -1,4 +1,6 @@
 #pragma once
+#include <Exceptions.hpp>
+
 #include "User.hpp"
 #include <sstream>
 #include <vector>
@@ -24,7 +26,7 @@ public:
     void saveToFile_Users(const string &filename, const User &user) const {
         ofstream outFile(filename, ios::binary | ios::out);
         if (!outFile) {
-            throw runtime_error("Could not open file for writing: " + filename);
+            throw FilePathError(filename);
         }
         ostringstream oss;
         oss << user;
@@ -41,7 +43,7 @@ public:
     void saveToFile(const string &filename) const {
         ofstream outFile(filename, ios::binary | ios::out);
         if (!outFile) {
-            throw runtime_error("Could not open file for writing: " + filename);
+            throw FilePathError(filename);
         }
 
         const size_t size = items.size();
@@ -64,7 +66,7 @@ public:
     int loadFromFile_User(const string &filename, User &user) {
         ifstream inFile(filename, ios::binary | ios::in);
         if (!inFile) {
-            throw runtime_error("Could not open file for reading: " + filename);
+            throw FilePathError(filename);
         }
         if (inFile.peek() == ifstream::traits_type::eof()) {
             return 1;
@@ -85,7 +87,7 @@ public:
     int loadFromFile(const string &filename) {
         ifstream inFile(filename, ios::binary | ios::in);
         if (!inFile) {
-            throw runtime_error("Could not open file for reading: " + filename);
+            throw FilePathError(filename);
         }
         if (inFile.peek() == ifstream::traits_type::eof()) {
             return 1;

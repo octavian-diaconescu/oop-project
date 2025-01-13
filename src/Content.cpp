@@ -3,8 +3,6 @@
 #include <utility>
 
 
-// Content::Content(std::string  T, const std::string& R, std::string  ageR) : title(std::move(T)), rating(R), ageRating(std::move(ageR)), userRating("undefined"), category("empty") {}
-
 Content::Content(std::string  Title, const std::string& R, std::string  ageR, const bool prog, std::string  userR, const Category & cat) : title(std::move(Title)), rating(R), ageRating(std::move(ageR)), progress(prog), userRating(std::move(userR)), category(cat) {
 };
 
@@ -40,5 +38,3 @@ bool Content::getWatchlistStatus() const {
 void Content::saveInfo(std::ostream &) const {
     std::cout << "Interface" << std::endl;
 }
-
-// Content::~Content() {}

@@ -19,7 +19,5 @@ public:
 
     Category(const Category &) = default;
 
-    //[[nodiscard]] std::string Name() const;
-
     ~Category() = default;
 };

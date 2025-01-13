@@ -130,16 +130,19 @@ int Watchlist::getID() const {
 }
 
 void Watchlist::printContents() const {
+  cout << "________________________________________________________________________" << endl;
   cout << "Movies in watchlist: " << endl;
   for (const auto &content: contents)
     if (const auto *movie = dynamic_cast<Movie *>(content.get())) {
       movie->printInfo();
     }
+  cout << "________________________________________________________________________" << endl;
   cout << "TV Shows in watchlist: " << endl;
   for (const auto &content: contents)
     if (const auto *tvs = dynamic_cast<TVShow *>(content.get())) {
       tvs->printInfo();
     }
+  cout << "________________________________________________________________________" << endl;
 }
 
 const vector<shared_ptr<Content> > &Watchlist::getContents() const {
@@ -163,10 +166,6 @@ void Watchlist::deleteContent(const std::string &title) {
 
 void Watchlist::deleteWatchlist() {
   contents.clear();
+  --cnt;
   cout << "Watchlist with id: " << id << " has been deleted" << endl;
 }
-//
-// ostream &operator<<(ostream &os, const Watchlist &watchlist) {
-//   os << watchlist.id << " " << watchlist.name << endl;
-//   return os;
-// }
