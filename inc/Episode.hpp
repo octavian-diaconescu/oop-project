@@ -15,6 +15,4 @@ public:
     void printInfo() const override;
 
     friend std::istream &operator>>(std::istream &, Episode &);
-
-    ~Episode() override = default;
 };

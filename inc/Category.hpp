@@ -15,9 +15,4 @@ public:
 
     friend bool operator<(const Category &, const Category &);
 
-    Category &operator=(const Category &) = default;
-
-    Category(const Category &) = default;
-
-    ~Category() = default;
 };
